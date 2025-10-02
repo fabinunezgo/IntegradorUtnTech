@@ -1,3 +1,5 @@
+import React from "react";
+
 export default function Sidebar({ setView, setShowAcerca }) {
   const opciones = [
     "inicio",
@@ -10,15 +12,12 @@ export default function Sidebar({ setView, setShowAcerca }) {
   ];
 
   return (
-    <aside className="w-64 bg-white p-6 rounded-2xl shadow-md">
-      <h3 className="font-semibold text-lg mb-4">Menú</h3>
-      <ul className="space-y-2">
+    <aside>
+      <h3>Menú</h3>
+      <ul>
         {opciones.map((op) => (
           <li key={op}>
-            <button
-              className="w-full text-left px-2 py-1 rounded hover:bg-blue-100"
-              onClick={() => (op === "acerca" ? setShowAcerca(true) : setView(op))}
-            >
+            <button onClick={() => (op === "acerca" ? setShowAcerca(true) : setView(op))}>
               {op}
             </button>
           </li>
