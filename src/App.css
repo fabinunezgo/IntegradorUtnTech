@@ -1,42 +1,191 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body, html, #root {
+  height: 100%;
+  font-family: Arial, sans-serif;
+  width: 100%;
+  background-color: #f4f4f4;
+}
+
+/* App principal */
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* ===== Encabezado ===== */
+header {
+  background-color: #0C223F;
+  width: 100%;
+  padding: 10px 30px;
+  display: flex;
+  justify-content: center;
+}
+
+.top-header {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+/* Logo y título a la izquierda */
+.logo-titulo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-img {
+  height: 60px;
+  width: auto;
+}
+
+.titulo {
+  font-size: 2.2rem;
+  font-weight: bold;
+  color: #5EC2F1;
+}
+
+/* Contenedor del buscador + menú */
+.buscador-menu {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end; /* todo alineado a la derecha */
+}
+
+/* Buscador */
+.buscador {
+  width: 250px;
+  padding: 8px 12px;
+  border-radius: 5px;
+  border: none;
+  margin-bottom: 5px;
+}
+
+/* Menú debajo del buscador */
+.menu-principal {
+  display: flex;
+  gap: 20px;
+}
+
+.menu-principal a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.2s;
+}
+
+.menu-principal a:hover {
+  color: #ffeb3b;
+}
+
+/* ===== Contenido principal ===== */
+.contenido-principal {
+  display: flex;
+  flex: 1;
+  width: 100%;
+}
+
+/* Sidebar lateral */
+.menu-lateral {
+  width: 200px;
+  background-color: #0C223F;
+  color: white;
+  padding-top: 20px;
+  min-height: calc(100vh - 130px); /* ajusta al header */
+  position: sticky;
+  top: 0;
+}
+
+.menu-lateral ul {
+  list-style: none;
+  padding: 0;
+}
+
+.menu-lateral ul li {
+  padding: 12px 20px;
+  cursor: pointer;
+}
+
+.menu-lateral ul li:hover {
+  background-color: #081d33;
+}
+
+/* ===== Main ===== */
+main {
+  flex: 1;
+  padding: 20px;
+  display: flex;
+  flex-wrap: wrap; /* productos en filas horizontales */
+  gap: 20px;
+  justify-content: flex-start; /* alineados al inicio */
+}
+
+/* Tarjetas de productos y sucursales */
+.producto-card, .sucursal-card {
+  background-color: white;
+  border-radius: 10px;
+  padding: 15px;
+  width: 220px; /* ancho fijo para que queden alineados horizontalmente */
   text-align: center;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+  cursor: pointer;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.producto-card:hover, .sucursal-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.15);
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
+/* ===== Footer ===== */
+footer {
+  background-color: #0C223F;
+  color: white;
+  text-align: center;
+  padding: 15px 0;
+  margin-top: auto;
+  font-size: 14px;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+  .contenido-principal {
+    flex-direction: column;
   }
-  to {
-    transform: rotate(360deg);
+
+  .menu-lateral {
+    width: 100%;
+    min-height: auto;
   }
-}
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
+  .top-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
   }
-}
 
-.card {
-  padding: 2em;
-}
+  .buscador-menu {
+    align-items: flex-start;
+  }
 
-.read-the-docs {
-  color: #888;
+  .buscador {
+    width: 100%;
+  }
+
+  main {
+    justify-content: center;
+  }
+
+  .producto-card, .sucursal-card {
+    width: 100%;
+  }
 }

@@ -1,38 +1,31 @@
-import { useState } from "react";
-import Header from "./components/Header";
-import Sidebar from "./components/Sidebar";
-import Main from "./components/Main";
-import ModalSucursal from "./components/ModalSucursal";
-import ModalAcerca from "./components/ModalAcerca";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Encabezado from "./components/Encabezado";
+import Footer from "./components/Footer";
+import MenuLateral from "./components/MenuLateral";
+import Inicio from "./pages/Inicio";
+import Servicios from "./pages/Servicios";
+import Acerca from "./pages/Acerca";
+import Contacto from "./pages/Contacto";
+import "./App.css";
 
-function App() {
-  const [view, setView] = useState("inicio");
-  const [showModalSucursal, setShowModalSucursal] = useState(null);
-  const [showAcerca, setShowAcerca] = useState(false);
-
+export default function App() {
   return (
-    <div>
-      {/* Header */}
-      <Header />
-
-      <div>
-        {/* Sidebar */}
-        <Sidebar setView={setView} setShowAcerca={setShowAcerca} />
-
-        {/* Contenido principal */}
-        <Main view={view} setModalSucursal={setShowModalSucursal} />
+    <Router>
+      <div className="app">
+        <Encabezado />
+        <div className="contenido-principal">
+          <MenuLateral />
+          <main>
+            <Routes>
+              <Route path="/" element={<Inicio />} />
+              <Route path="/Servicios" element={<Servicios />} />
+              <Route path="/Acerca" element={<Acerca />} />
+              <Route path="/Contacto" element={<Contacto />} />
+            </Routes>
+          </main>
+        </div>
+        <Footer />
       </div>
-
-      {/* Modales */}
-      {showModalSucursal && (
-        <ModalSucursal
-          sucursal={showModalSucursal}
-          onClose={() => setShowModalSucursal(null)}
-        />
-      )}
-      {showAcerca && <ModalAcerca onClose={() => setShowAcerca(false)} />}
-    </div>
+    </Router>
   );
 }
-
-export default App;

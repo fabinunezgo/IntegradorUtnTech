@@ -1,9 +1,8 @@
 export default function Footer() {
   return (
-    <footer>
-      <div>
-        © 2025 UtnTech. Todos los derechos reservados.
-      </div>
+    <footer className="footer">
+      <p>© 2025 INTEGRATOR UTN TECH - Todos los derechos reservados</p>
     </footer>
   );
 }
+
