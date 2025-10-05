@@ -8,7 +8,7 @@ export default function Encabezado() {
       <div className="top-header">
         <div className="logo-titulo">
           <img src={logo} alt="Logo UTN TECH" className="logo-img" />
-          <h1 className="titulo">UTNTech</h1>
+          <h1 className="titulo">UtnTech</h1>
         </div>
 
         <div className="buscador-menu">
