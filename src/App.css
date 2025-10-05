@@ -94,30 +94,6 @@ header {
   width: 100%;
 }
 
-/* Sidebar lateral */
-.menu-lateral {
-  width: 200px;
-  background-color: #0C223F;
-  color: white;
-  padding-top: 20px;
-  min-height: calc(100vh - 130px); /* ajusta al header */
-  position: sticky;
-  top: 0;
-}
-
-.menu-lateral ul {
-  list-style: none;
-  padding: 0;
-}
-
-.menu-lateral ul li {
-  padding: 12px 20px;
-  cursor: pointer;
-}
-
-.menu-lateral ul li:hover {
-  background-color: #081d33;
-}
 
 /* ===== Main ===== */
 main {
