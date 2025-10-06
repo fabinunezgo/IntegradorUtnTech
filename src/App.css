@@ -21,7 +21,7 @@ body, html, #root {
 
 /* ===== Encabezado ===== */
 header {
-  background-color: #0C223F;
+  background: linear-gradient(90deg, #0C223F 0%,  #0C223F 50%, #1f5974 100%);
   width: 100%;
   padding: 10px 30px;
   display: flex;
@@ -84,7 +84,7 @@ header {
 }
 
 .menu-principal a:hover {
-  color: #ffeb3b;
+  color: #5bb3fc;
 }
 
 /* ===== Contenido principal ===== */

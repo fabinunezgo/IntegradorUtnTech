@@ -1,0 +1,57 @@
+.sucursales-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: flex-start;
+  margin-top: 2rem;
+}
+
+.sucursal-card {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(12,34,63,0.07);
+  padding: 2rem 1.5rem 1.5rem 1.5rem;
+  width: 260px;
+  max-width: 260px;
+  min-width: 220px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  border: 1px solid #0C223F;
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+
+.sucursal-card:hover {
+  box-shadow: 0 8px 32px rgba(12,34,63,0.13);
+  transform: translateY(-4px) scale(1.03);
+  border-color: #1877f2;
+}
+
+.sucursal-icon {
+  font-size: 3rem;
+  color:  #5EC2F1;
+  margin-bottom: 0.5rem;
+}
+
+.sucursal-card h3 {
+  font-size: 1rem;
+  color:  #0C223F;
+  margin: 0;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.sucursal-card h2 {
+  font-size: 1.15rem;
+  color: #0C223F;
+  margin: 0;
+  font-weight: 700;
+}
+
+.sucursal-card p {
+  font-size: 0.98rem;
+  color: #091337;
+  margin: 0;
+  text-align: center;
+}

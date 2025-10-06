@@ -1,4 +1,14 @@
 import React from "react";
+import { FaLaptop, FaMobileAlt, FaHeadphones, FaTv, FaHome } from "react-icons/fa";
+import "../css/acerca.css";
+
+const iconos = {
+  "Computadoras y Tablets": <FaLaptop className="sucursal-icon" />,
+  "Celulares": <FaMobileAlt className="sucursal-icon" />,
+  "Audio": <FaHeadphones className="sucursal-icon" />,
+  "TV y Proyección": <FaTv className="sucursal-icon" />,
+  "Hogar y Oficina": <FaHome className="sucursal-icon" />,
+};
 
 const sucursales = [
   { name: "Sucursal A", category: "Computadoras y Tablets", info: "Ubicación: Centro | Miembros: Juan, Ana" },
@@ -10,14 +20,15 @@ const sucursales = [
 
 export default function Acerca() {
   return (
-    <main>
+    <div className="sucursales-grid">
       {sucursales.map((s) => (
         <div key={s.name} className="sucursal-card">
+          {iconos[s.category]}
           <h3>{s.category}</h3>
           <h2>{s.name}</h2>
           <p>{s.info}</p>
         </div>
       ))}
-    </main>
+    </div>
   );
 }
