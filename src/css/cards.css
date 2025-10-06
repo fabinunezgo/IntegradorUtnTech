@@ -1,0 +1,62 @@
+.producto-card {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(0,105,158,0.07);
+  padding: 1.5rem 1.2rem;
+  margin: 0;
+  transition: box-shadow 0.2s, transform 0.2s;
+  height: 320px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  flex: 1 1 260px;
+  min-width: 220px;
+  border: 1px solid #e5e7eb;
+   width: 260px;      
+  height: 320px;     /* alto fijo */
+  min-width: 260px;  /* asegura que no se reduzca */
+  max-width: 260px;  /* asegura que no se expanda */
+  box-sizing: border-box;
+  display: flex;
+}
+
+.producto-card:hover {
+  box-shadow: 0 8px 32px rgba(0,105,158,0.13);
+  transform: translateY(-4px) scale(1.02);
+  border-color: #163d86;
+}
+
+.producto-card h3 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color:#0C223F;
+  margin: 0 0 0.2rem 0;
+  line-height: 1.2;
+  letter-spacing: 0.5px;
+}
+
+.producto-card p {
+  font-size: 1rem;
+  color: #091337;
+  margin: 0 0 0.2rem 0;
+}
+.producto-card p:nth-child(3) {
+  color: #277bbe;
+  font-weight: 700;
+  font-size: 1.08rem;
+  background: none;
+  border-radius: 0;
+  padding: 0;
+  display: inline;
+}
+
+/* Categoría: solo color, sin fondo ni borde */
+.producto-card p:nth-child(4) {
+  background: none;
+  border-radius: 0;
+  padding: 0;
+  color: #002a9e;
+  font-size: 0.95rem;
+  display: inline;
+}

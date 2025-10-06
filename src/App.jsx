@@ -15,6 +15,7 @@ export default function App() {
         <Encabezado />
         <div className="contenido-principal">
           <MenuLateral />
+          <div className="contenido-scroll">
           <main>
             <Routes>
               <Route path="/" element={<Inicio />} />
@@ -23,6 +24,7 @@ export default function App() {
               <Route path="/Contacto" element={<Contacto />} />
             </Routes>
           </main>
+        </div>
         </div>
         <Footer />
       </div>

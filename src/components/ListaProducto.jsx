@@ -1,4 +1,3 @@
-// ListaProducto.jsx
 import React from "react";
 import TarjetaProducto from "./TarjetaProducto";
 
@@ -8,10 +7,10 @@ export default function ListaProducto({ productos }) {
   }
 
   return (
-    <main>
+    <div className="cards-grid">
       {productos.map((p) => (
         <TarjetaProducto key={p.idProducto} producto={p} />
       ))}
-    </main>
+    </div>
   );
 }

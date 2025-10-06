@@ -86,3 +86,20 @@
   padding-bottom: 1rem;
 }
 
+@media (max-width: 768px) {
+  .menu-lateral {
+    width: 100%;
+    min-width: unset;
+    max-width: unset;
+    height: auto;
+    border-radius: 0;
+    box-shadow: none;
+    padding: 1rem 0.5rem;
+    align-items: flex-start;
+    position: static;
+  }
+  .menu-lateral.abierto {
+    padding-left: 0;
+    align-items: flex-start;
+  }
+}
