@@ -1,33 +1,31 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import logo from "../assets/LogoUtnTech.png";
-import { FaUserCircle } from "react-icons/fa"; // icono de perfil
+import { FaUserCircle } from "react-icons/fa"; 
+import "../css/encabezado.css";
 
 export default function Encabezado() {
   return (
-    <header>
+    <header className="encabezado">
       <div className="top-header">
-        {/* Logo y título a la izquierda */}
         <div className="logo-titulo">
           <img src={logo} alt="Logo UTN TECH" className="logo-img" />
-          <h1 className="titulo">UtnTech</h1>
+          <h1 className="titulo encabezado-titulo">UTNTech</h1>
         </div>
 
-        {/* Buscador y botón de login a la derecha */}
         <div className="buscador-menu">
           <div className="buscador-login">
-            <input type="text" placeholder="Buscar..." className="buscador" />
+            <input type="text" placeholder="Buscar..." className="buscador-input" />
             <Link to="/login" className="btn-login">
-              <FaUserCircle /> {/* icono de perfil */}
+              <FaUserCircle className="icono-login" />
             </Link>
           </div>
 
-          {/* Menú principal debajo */}
           <nav className="menu-principal">
-            <Link to="/">Inicio</Link>
-            <Link to="/Servicios">Servicios</Link>
-            <Link to="/Acerca">Acerca de</Link>
-            <Link to="/Contacto">Contáctanos</Link>
+            <Link to="/" className="menu-link">Inicio</Link>
+            <Link to="/Servicios" className="menu-link">Servicios</Link>
+            <Link to="/Acerca" className="menu-link">Acerca de</Link>
+            <Link to="/Contacto" className="menu-link">Contáctanos</Link>
           </nav>
         </div>
       </div>

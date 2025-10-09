@@ -1,0 +1,93 @@
+.encabezado {
+  background: linear-gradient(90deg, #0C223F 0%,  #0C223F 50%, #1f5974 100%);
+  width: 100%;
+  padding: 10px 30px;
+  display: flex;
+  justify-content: center;
+}
+
+.top-header {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+/* Logo y título a la izquierda */
+.logo-titulo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-img {
+  height: 60px;
+  width: auto;
+}
+
+.titulo,
+.encabezado-titulo {
+  font-size: 2.2rem;
+  font-weight: bold;
+  color: #5EC2F1;
+}
+
+/* Contenedor del buscador + login */
+.buscador-login {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Buscador */
+.buscador-input {
+  width: 250px;
+  padding: 8px 12px;
+  border-radius: 5px;
+  border: none;
+}
+
+.btn-login {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  padding: 9px 10px;
+  border-radius: 8px;
+  background-color: #d4a017; /* amarillo mostaza */
+  color: white;
+  font-weight: bold;
+  font-size: 14px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.btn-login:hover {
+  background-color: #c5930f;
+  transform: translateY(-2px);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+}
+
+.icono-login {
+  font-size: 22px;
+}
+
+/* Menú debajo del header */
+.menu-principal {
+  display: flex;
+  gap: 20px;
+  margin-top: 10px;
+}
+
+.menu-link {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.2s;
+}
+
+.menu-link:hover {
+  color: #5bb3fc;
+}
