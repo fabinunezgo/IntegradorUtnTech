@@ -14,9 +14,9 @@
   min-width: 220px;
   border: 1px solid #e5e7eb;
    width: 260px;      
-  height: 320px;     /* alto fijo */
-  min-width: 260px;  /* asegura que no se reduzca */
-  max-width: 260px;  /* asegura que no se expanda */
+  height: 320px;    
+  min-width: 260px;  
+  max-width: 260px;  
   box-sizing: border-box;
   display: flex;
 }
@@ -59,4 +59,30 @@
   color: #002a9e;
   font-size: 0.95rem;
   display: inline;
+}
+
+.btn-comprar {
+  margin-top: auto;
+  padding: 4px;
+  background-color: #d4a017;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center; /* centra el contenido */
+  gap: 6px;
+  font-size: 0.95rem;      /* letra más pequeña */
+  text-align: center;       /* centra el texto */
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+.btn-comprar:hover {
+  background-color: #0C223F;
+  transform: translateY(-2px);
+}
+
+.icono-carrito {
+  font-size: 1rem; /* icono más pequeño */
 }
