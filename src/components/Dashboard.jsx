@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { FaPlusCircle, FaBoxOpen } from "react-icons/fa"; // Íconos para las cards
+import { FaPlusCircle, FaBoxOpen } from "react-icons/fa";
+import "../css/dashborad.css";
 
 export default function Dashboard() {
   const navigate = useNavigate();
@@ -15,9 +16,9 @@ export default function Dashboard() {
     <div className="dashboard-page">
       {/* Header propio */}
       <div className="dashboard-header">
-        <h2>Bienvenido a {usuario.sucursal}</h2>
+        <h2 className="dashboard-titulo">Bienvenido a {usuario.sucursal}</h2>
         <button
-          className="btn-logout"
+          className="dashboard-btn-logout"
           onClick={() => {
             sessionStorage.removeItem("usuario");
             navigate("/login");
@@ -30,21 +31,21 @@ export default function Dashboard() {
       {/* Main con cards */}
       <div className="dashboard-main">
         <div
-          className="dashboard-card"
+          className="dashboard-card dashboard-card-add"
           onClick={() => navigate("/dashboard/add-product")}
         >
-          <FaPlusCircle size={50} color="#5EC2F1" style={{ marginBottom: "10px" }} />
-          <h3>Añadir Producto</h3>
-          <p>Registrar nuevos productos a la sucursal</p>
+          <FaPlusCircle className="dashboard-icon" />
+          <h3 className="dashboard-card-titulo">Añadir Producto</h3>
+          <p className="dashboard-card-desc">Registrar nuevos productos a la sucursal</p>
         </div>
 
         <div
-          className="dashboard-card"
+          className="dashboard-card dashboard-card-inventory"
           onClick={() => navigate("/dashboard/inventory")}
         >
-          <FaBoxOpen size={50} color="#5EC2F1" style={{ marginBottom: "10px" }} />
-          <h3>Inventario</h3>
-          <p>Ver y administrar los productos existentes</p>
+          <FaBoxOpen className="dashboard-icon" />
+          <h3 className="dashboard-card-titulo">Inventario</h3>
+          <p className="dashboard-card-desc">Ver y administrar los productos existentes</p>
         </div>
       </div>
     </div>

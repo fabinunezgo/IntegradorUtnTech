@@ -14,7 +14,7 @@ export default function Login() {
     { correo: "juan@sucursal1.com", password: "1234", sucursal: "Sucursal A" },
     { correo: "ana@sucursal2.com", password: "1234", sucursal: "Sucursal B" }
   ];
-
+  
   const handleSubmit = (e) => {
     e.preventDefault();
     const usuarioValido = usuarios.find(
