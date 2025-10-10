@@ -1,7 +1,7 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "../css/MenuLateral.css";
-import { FaLaptop, FaMobileAlt, FaHeadphones, FaTv, FaHome } from "react-icons/fa";
-import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import { FaLaptop, FaMobileAlt, FaHeadphones, FaTv, FaHome, FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
 const categorias = [
   { nombre: "Computadoras y Tablets", icon: <FaLaptop /> },
@@ -13,6 +13,11 @@ const categorias = [
 
 export default function MenuLateral() {
   const [abierto, setAbierto] = useState(false);
+  const navigate = useNavigate();
+
+  const handleCategoriaClick = (categoria) => {
+    navigate(`/categoria/${encodeURIComponent(categoria)}`);
+  };
 
   return (
     <aside
@@ -26,13 +31,18 @@ export default function MenuLateral() {
           onClick={() => setAbierto(!abierto)}
           title={abierto ? "Colapsar" : "Expandir"}
         >
-        {abierto ? <FaChevronLeft /> : <FaChevronRight />}
+          {abierto ? <FaChevronLeft /> : <FaChevronRight />}
         </button>
         {abierto && <span className="menu-lateral-logo">UtnTech</span>}
       </div>
       <ul className="menu-lateral-list">
         {categorias.map((cat) => (
-          <li key={cat.nombre} className="menu-lateral-item">
+          <li
+            key={cat.nombre}
+            className="menu-lateral-item"
+            onClick={() => handleCategoriaClick(cat.nombre)}
+            style={{ cursor: "pointer" }}
+          >
             <span className="menu-lateral-icon">{cat.icon}</span>
             {abierto && <span className="menu-lateral-text">{cat.nombre}</span>}
           </li>

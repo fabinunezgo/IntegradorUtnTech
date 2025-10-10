@@ -34,6 +34,7 @@ function AppContent() {
               <Route path="/Servicios" element={<Servicios />} />
               <Route path="/Acerca" element={<Acerca />} />
               <Route path="/Contacto" element={<Contacto />} />
+              <Route path="/categoria/:nombreCategoria" element={<Inicio />} />
             </Routes>
           </main>
         </div>
