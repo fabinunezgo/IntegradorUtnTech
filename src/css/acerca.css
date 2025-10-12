@@ -1,8 +1,10 @@
 .acerca-container {
-  padding: 30px;
-  text-align: center; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;     /* centra horizontalmente */
+  justify-content: center; /* centra verticalmente si hay espacio */
+  width: 100%;
 }
-
 .acerca-container h2 {
   font-size: 2rem;
   color: #0C223F;
@@ -17,22 +19,43 @@
 }
 
 .sucursales-grid {
+ display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 25px;
+  margin-top: 30px;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.sucursales-grid {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
   justify-content: center;
+  align-items: flex-start;
+  gap: 25px;
   margin-top: 30px;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
+/* 💎 Todas las tarjetas del mismo tamaño */
 .sucursal-card {
   background-color: white;
   border-radius: 12px;
   padding: 20px;
-  width: 220px;
+  width: 230px;              /* ancho fijo */
+  height: 230px;             /* alto fijo */
   box-shadow: 0 4px 12px rgba(0,0,0,0.15);
   cursor: pointer;
   transition: transform 0.2s, box-shadow 0.2s;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;   /* centra contenido vertical */
+  align-items: center;       /* centra horizontal */
 }
 
 .sucursal-card:hover {
@@ -40,21 +63,24 @@
   box-shadow: 0 8px 20px rgba(0,0,0,0.2);
 }
 
-.sucursal-card h2.nombre-sucursal {
-  margin: 10px 0 5px;
-  color: #d4a017; 
-}
-
-.sucursal-card h3.categoria {
-  color: #0C223F; 
-  margin-bottom: 5px;
-}
-
 .sucursal-icon {
   font-size: 40px;
   margin-bottom: 10px;
   color: #0C223F;
 }
+
+.sucursal-card h2.nombre-sucursal {
+  margin: 10px 0 5px;
+  color: #d4a017;
+  font-size: 1.2rem;
+}
+
+.sucursal-card h3.categoria {
+  color: #0C223F;
+  margin-bottom: 5px;
+  font-size: 1rem;
+}
+
 
 /* Modal */
 .modal-backdrop {
@@ -175,4 +201,122 @@
 
 .contacto svg {
   color: #0C223F; 
+}
+
+/* 📱 Responsividad general */
+@media (max-width: 1024px) {
+  .acerca-container {
+    padding: 20px;
+  }
+
+  .linea-amarilla-acerca {
+    width: 400px; /* se ajusta al ancho */
+  }
+
+  .sucursales-grid {
+    gap: 15px;
+  }
+
+  .sucursal-card {
+    width: 200px;
+    padding: 15px;
+  }
+}
+
+@media (max-width: 768px) {
+  .acerca-container {
+    padding: 15px;
+  }
+
+  .acerca-container h2 {
+    font-size: 1.7rem;
+  }
+
+  .linea-amarilla-acerca {
+    width: 250px;
+    height: 3px;
+  }
+
+  .sucursales-grid {
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .sucursal-card {
+    width: 80%;
+    max-width: 320px;
+  }
+
+  .modal-content {
+    max-width: 90%;
+    padding: 20px;
+  }
+
+  .modal-titulo {
+    font-size: 1.3rem;
+  }
+
+  .miembros-titulo {
+    font-size: 1.1rem;
+  }
+
+  .miembro-card {
+    width: 100%;
+  }
+
+  .miembro-nombre {
+    font-size: 1rem;
+  }
+
+  .miembro-rol {
+    font-size: 13px;
+  }
+
+  .contacto {
+    font-size: 13px;
+    flex-wrap: wrap;
+  }
+
+  .modal-close {
+    width: 30px;
+    height: 30px;
+    font-size: 9px;
+  }
+}
+
+@media (max-width: 480px) {
+  .acerca-container h2 {
+    font-size: 1.4rem;
+  }
+
+  .linea-amarilla-acerca {
+    width: 180px;
+  }
+
+  .sucursal-card {
+    width: 90%;
+  }
+
+  .modal-content {
+    width: 95%;
+    padding: 15px;
+  }
+
+  .modal-titulo {
+    font-size: 1.1rem;
+  }
+
+  .miembros-lista {
+    gap: 10px;
+  }
+
+  .miembro-card {
+    padding: 8px;
+  }
+
+  .miembro-rol,
+  .contacto {
+    font-size: 12px;
+  }
 }

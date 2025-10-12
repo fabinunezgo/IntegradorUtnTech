@@ -66,3 +66,139 @@
   font-size: 1rem;
   color: #333;
 }
+
+/* 💎 Centrado general */
+.contacto-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;     /* centra horizontalmente */
+  justify-content: center; /* centra verticalmente si hay espacio */
+  width: 100%;
+  text-align: center;
+}
+
+.contacto-cards {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  flex-wrap: wrap;
+  max-width: 1100px;       /* límite visual */
+  margin: 0 auto;
+}
+
+/* 💎 Igual tamaño de tarjetas */
+.contacto-card {
+  flex: 1 1 280px;
+  max-width: 300px;
+  min-height: 200px;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 30px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contacto-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.contacto-card h3 {
+  font-size: 1.3rem;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #0C223F;
+}
+
+.contacto-card p {
+  font-size: 1rem;
+  color: #333;
+  line-height: 1.5;
+}
+
+/* 📱 Tablets */
+@media (max-width: 992px) {
+  .contacto-page {
+    padding: 50px 5%;
+  }
+
+  .linea-amarilla {
+    width: 250px;
+  }
+
+  .contacto-cards {
+    gap: 20px;
+  }
+
+  .contacto-card {
+    max-width: 280px;
+    padding: 25px 18px;
+  }
+}
+
+/* 📱 Celulares */
+@media (max-width: 768px) {
+  .contacto-page {
+    padding: 40px 5%;
+  }
+
+  .contacto-page h2 {
+    font-size: 1.6rem;
+  }
+
+  .linea-amarilla {
+    width: 180px;
+    height: 3px;
+  }
+
+  .contacto-cards {
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+  }
+
+  .contacto-card {
+    width: 90%;
+    max-width: 320px;
+    min-height: 180px;
+  }
+
+  .contacto-card h3 {
+    font-size: 1.1rem;
+  }
+
+  .contacto-card p {
+    font-size: 0.95rem;
+  }
+}
+
+/* 📱 Móviles pequeños */
+@media (max-width: 480px) {
+  .contacto-page {
+    padding: 30px 3%;
+  }
+
+  .contacto-page h2 {
+    font-size: 1.4rem;
+  }
+
+  .linea-amarilla {
+    width: 150px;
+  }
+
+  .contacto-card {
+    width: 95%;
+    padding: 20px 15px;
+  }
+
+  .contacto-card p {
+    font-size: 0.9rem;
+  }
+}
