@@ -9,40 +9,36 @@ import Acerca from "./pages/Acerca";
 import Contacto from "./pages/Contacto";
 import Login from "./components/Login";
 import Dashboard from "./components/Dashboard";
+import AgregarProducto from "./components/AgregarProducto";
+import Inventario from "./components/Inventario";
 import "./App.css";
 
 function AppContent() {
   const location = useLocation();
   const [busqueda, setBusqueda] = useState("");
-
-  // Detectamos rutas especiales donde no queremos header ni sidebar
-  const hideLayout = location.pathname === "/login" || location.pathname === "/dashboard";
+  const hideLayout = location.pathname === "/login" || location.pathname.startsWith("/dashboard");
 
   return (
     <div className="app">
-      {/* Header solo si no estamos en login ni dashboard */}
       {!hideLayout && <Encabezado onBuscar={setBusqueda} />}
-
       <div className="contenido-principal">
-        {/* Sidebar solo si no estamos en login ni dashboard */}
         {!hideLayout && <MenuLateral />}
-
         <div className="contenido-scroll" style={{ flex: 1 }}>
           <main>
             <Routes>
               <Route path="/login" element={<Login />} />
               <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/dashboard/add-product" element={<AgregarProducto />} />
+              <Route path="/dashboard/inventory" element={<Inventario />} />
               <Route path="/" element={<Inicio busqueda={busqueda} />} />
-              <Route path="/Servicios" element={<Servicios />} />
-              <Route path="/Acerca" element={<Acerca />} />
-              <Route path="/Contacto" element={<Contacto />} />
+              <Route path="/servicios" element={<Servicios />} />
+              <Route path="/acerca" element={<Acerca />} />
+              <Route path="/contacto" element={<Contacto />} />
               <Route path="/categoria/:nombreCategoria" element={<Inicio busqueda={busqueda} />} />
             </Routes>
           </main>
         </div>
       </div>
-
-      {/* Footer solo si no estamos en login ni dashboard */}
       {!hideLayout && <Footer />}
     </div>
   );

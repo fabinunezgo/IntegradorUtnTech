@@ -51,7 +51,6 @@
   display: inline;
 }
 
-/* Categoría: solo color, sin fondo ni borde */
 .producto-card p:nth-child(4) {
   background: none;
   border-radius: 0;
@@ -71,10 +70,10 @@
   font-weight: bold;
   cursor: pointer;
   align-items: center;
-  justify-content: center; /* centra el contenido */
+  justify-content: center; 
   gap: 6px;
-  font-size: 0.95rem;      /* letra más pequeña */
-  text-align: center;       /* centra el texto */
+  font-size: 0.95rem;      
+  text-align: center;       
   transition: background-color 0.2s, transform 0.2s;
 }
 
@@ -84,5 +83,5 @@
 }
 
 .icono-carrito {
-  font-size: 1rem; /* icono más pequeño */
+  font-size: 1rem; 
 }

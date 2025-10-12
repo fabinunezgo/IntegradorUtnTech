@@ -108,7 +108,6 @@ export default function Acerca() {
         ))}
       </div>
 
-{/* Modal */}
 {modalOpen && sucursalSeleccionada && (
   <div className="modal-backdrop" onClick={cerrarModal}>
     <div className="modal-content" onClick={(e) => e.stopPropagation()}>
@@ -116,12 +115,10 @@ export default function Acerca() {
       <FaTimes />
       </button>
 
-      {/* Sucursal */}
       <h2 className="modal-titulo">{sucursalSeleccionada.name}</h2>
       <div className="linea-amarilla"></div>
       <p className="descripcion">{sucursalSeleccionada.descripcion}</p>
 
-      {/* Miembros */}
       <h3 className="modal-titulo miembros-titulo">Miembros</h3>
       <div className="miembros-lista izquierda">
         {sucursalSeleccionada.miembros.map((m, i) => (

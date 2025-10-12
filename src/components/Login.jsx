@@ -31,7 +31,6 @@ export default function Login() {
 
   return (
     <div className="login-page">
-      {/* Botón de volver */}
       <button className="login-btn-volver" onClick={() => navigate("/")}>
         <FaArrowLeft className="login-icon-volver" />
       </button>

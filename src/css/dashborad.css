@@ -7,7 +7,6 @@
   padding: 20px;
 }
 
-/* Header propio */
 .dashboard-header {
   display: flex;
   justify-content: space-between;
@@ -40,7 +39,6 @@
   transform: translateY(-2px);
 }
 
-/* Main con cards */
 .dashboard-main {
   display: flex;
   gap: 20px;

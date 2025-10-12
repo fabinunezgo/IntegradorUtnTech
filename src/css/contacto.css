@@ -67,12 +67,11 @@
   color: #333;
 }
 
-/* 💎 Centrado general */
 .contacto-page {
   display: flex;
   flex-direction: column;
-  align-items: center;     /* centra horizontalmente */
-  justify-content: center; /* centra verticalmente si hay espacio */
+  align-items: center;     
+  justify-content: center; 
   width: 100%;
   text-align: center;
 }
@@ -83,11 +82,11 @@
   align-items: center;
   gap: 30px;
   flex-wrap: wrap;
-  max-width: 1100px;       /* límite visual */
+  max-width: 1100px;       
   margin: 0 auto;
 }
 
-/* 💎 Igual tamaño de tarjetas */
+/* tamaño de tarjetas */
 .contacto-card {
   flex: 1 1 280px;
   max-width: 300px;
@@ -123,7 +122,6 @@
   line-height: 1.5;
 }
 
-/* 📱 Tablets */
 @media (max-width: 992px) {
   .contacto-page {
     padding: 50px 5%;
@@ -143,7 +141,6 @@
   }
 }
 
-/* 📱 Celulares */
 @media (max-width: 768px) {
   .contacto-page {
     padding: 40px 5%;
@@ -179,7 +176,6 @@
   }
 }
 
-/* 📱 Móviles pequeños */
 @media (max-width: 480px) {
   .contacto-page {
     padding: 30px 3%;

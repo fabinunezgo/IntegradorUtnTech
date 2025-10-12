@@ -19,8 +19,6 @@ export default function MenuLateral() {
   const handleCategoriaClick = (categoria) => {
     navigate(`/categoria/${encodeURIComponent(categoria)}`);
   };
-
-  // Detecta cambios de tamaño para adaptar el menú automáticamente
   useEffect(() => {
     const handleResize = () => setEsMovil(window.innerWidth <= 768);
     window.addEventListener("resize", handleResize);

@@ -1,5 +1,5 @@
 import React from "react";
-import "../css/encabezado.css"; // para que tome los estilos
+import "../css/encabezado.css"; 
 
 export default function Buscador({ onBuscar }) {
   return (

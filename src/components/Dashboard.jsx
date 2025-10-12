@@ -14,7 +14,6 @@ export default function Dashboard() {
 
   return (
     <div className="dashboard-page">
-      {/* Header propio */}
       <div className="dashboard-header">
         <h2 className="dashboard-titulo">Bienvenido a {usuario.sucursal}</h2>
         <button
@@ -27,8 +26,6 @@ export default function Dashboard() {
           Cerrar sesión
         </button>
       </div>
-
-      {/* Main con cards */}
       <div className="dashboard-main">
         <div
           className="dashboard-card dashboard-card-add"

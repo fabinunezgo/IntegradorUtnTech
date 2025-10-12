@@ -1,8 +1,8 @@
 .acerca-container {
   display: flex;
   flex-direction: column;
-  align-items: center;     /* centra horizontalmente */
-  justify-content: center; /* centra verticalmente si hay espacio */
+  align-items: center;     
+  justify-content: center; 
   width: 100%;
 }
 .acerca-container h2 {
@@ -41,21 +41,21 @@
   margin-right: auto;
 }
 
-/* 💎 Todas las tarjetas del mismo tamaño */
+/* tarjetas del mismo tamaño */
 .sucursal-card {
   background-color: white;
   border-radius: 12px;
   padding: 20px;
-  width: 230px;              /* ancho fijo */
-  height: 230px;             /* alto fijo */
+  width: 230px;              
+  height: 230px;             
   box-shadow: 0 4px 12px rgba(0,0,0,0.15);
   cursor: pointer;
   transition: transform 0.2s, box-shadow 0.2s;
   text-align: center;
   display: flex;
   flex-direction: column;
-  justify-content: center;   /* centra contenido vertical */
-  align-items: center;       /* centra horizontal */
+  justify-content: center;   
+  align-items: center;       
 }
 
 .sucursal-card:hover {
@@ -160,7 +160,6 @@
   margin-bottom: 10px;
 }
 
-/* Lista de miembros */
 .miembros-lista {
   display: flex;
   flex-direction: column;
@@ -203,14 +202,13 @@
   color: #0C223F; 
 }
 
-/* 📱 Responsividad general */
 @media (max-width: 1024px) {
   .acerca-container {
     padding: 20px;
   }
 
   .linea-amarilla-acerca {
-    width: 400px; /* se ajusta al ancho */
+    width: 400px; 
   }
 
   .sucursales-grid {

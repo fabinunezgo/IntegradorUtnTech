@@ -13,7 +13,6 @@ export default function Encabezado({ onBuscar }) {
   return (
     <header className="encabezado">
       <div className="top-header">
-        {/* Fila superior: logo + buscador/login */}
         <div className="logo-buscador">
           <div className="logo-titulo">
             <img src={logo} alt="Logo UTN TECH" className="logo-img" />
@@ -27,8 +26,6 @@ export default function Encabezado({ onBuscar }) {
             </Link>
           </div>
         </div>
-
-        {/* Fila inferior: menú */}
         <nav className="menu-principal">
           <Link to="/" className="menu-link">Inicio</Link>
           <Link to="/Servicios" className="menu-link">Servicios</Link>
