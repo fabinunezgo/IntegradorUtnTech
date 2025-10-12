@@ -1,5 +1,5 @@
 .menu-lateral {
-  background: #ffffff; /* azul principal */
+  background: #ffffff;
   box-shadow: 0 2px 8px rgba(0,0,0,0.07);
   padding: 1rem 0.5rem;
   min-width: 60px;
@@ -9,7 +9,8 @@
   flex-direction: column;
   align-items: center;
   transition: max-width 0.3s, min-width 0.3s;
-  position: relative;
+  position: static; /* 👈 importante: no fixed ni absolute */
+  z-index: 10;
 }
 
 .menu-lateral.abierto {
@@ -33,14 +34,13 @@
   border: none;
   font-size: 1.5rem;
   cursor: pointer;
-  justify-content: center;
-  color: #0C223F; /* icono blanco */
+  color: #0C223F;
 }
 
 .menu-lateral-logo {
   font-size: 1.3rem;
   font-weight: bold;
-  color: #0C223F; /* logo blanco */
+  color: #0C223F;
 }
 
 .menu-lateral-list {
@@ -59,47 +59,86 @@
   transition: background 0.2s;
   padding: 0.5rem 0.5rem;
   border-radius: 8px;
-  color:#0C223F; /* texto blanco */
+  color:#0C223F;
 }
 
 .menu-lateral-item:hover {
-  background:#0c4da165; /* gris claro */
-  color: #0a3063; /* azul principal */
+  background:#0c4da165;
+  color: #0a3063;
 }
 
 .menu-lateral-icon {
   font-size: 1.3rem;
-  color:#0C223F; /* icono blanco */
+  color:#0C223F;
 }
 
 .menu-lateral-text {
   font-size: 1rem;
-  color: #0C223F; /* texto blanco */
+  color: #0C223F;
 }
 
-.menu-lateral-footer {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  margin-top: auto;
-  padding-bottom: 1rem;
-}
-
+/* 📱 Pantallas pequeñas: mantener menú vertical y compacto */
 @media (max-width: 768px) {
   .menu-lateral {
-    width: 100%;
-    min-width: unset;
-    max-width: unset;
-    height: auto;
-    border-radius: 0;
-    box-shadow: none;
+    position: fixed;             /* pegado a la izquierda */
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 60px;                 /* ancho compacto */
+    min-width: 60px;
+    max-width: 60px;
+    background: #ffffff;
+    box-shadow: 2px 0 6px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
     padding: 1rem 0.5rem;
-    align-items: flex-start;
-    position: static;
+    z-index: 1000;
   }
+
   .menu-lateral.abierto {
+    width: 60px;
     padding-left: 0;
-    align-items: flex-start;
+    align-items: center;
+  }
+
+  .menu-lateral-header {
+    margin-bottom: 1rem;
+  }
+
+  .menu-lateral-toggle {
+    font-size: 1.2rem;
+    color: #0C223F;
+  }
+
+  .menu-lateral-item {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.2rem;
+    color: #0C223F;
+  }
+
+  .menu-lateral-icon {
+    font-size: 1.5rem;
+    color: #0C223F;
+  }
+
+  .menu-lateral-text {
+    display: none; /* ❌ ocultamos el texto */
+  }
+
+  .menu-lateral-logo {
+    display: none;
+  }
+}
+
+/* 🖥️ Pantallas grandes: comportamiento normal expandible */
+@media (min-width: 769px) {
+  .menu-lateral {
+    position: static;
+    height: 90vh;
+    background: #ffffff;
   }
 }

@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "../css/MenuLateral.css";
-import { FaLaptop, FaMobileAlt, FaHeadphones, FaTv, FaHome, FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import { FaLaptop, FaMobileAlt, FaHeadphones, FaTv, FaHome, FaChevronLeft, FaChevronRight,} from "react-icons/fa";
 
 const categorias = [
   { nombre: "Computadoras y Tablets", icon: <FaLaptop /> },
@@ -13,38 +13,55 @@ const categorias = [
 
 export default function MenuLateral() {
   const [abierto, setAbierto] = useState(false);
+  const [esMovil, setEsMovil] = useState(window.innerWidth <= 768);
   const navigate = useNavigate();
 
   const handleCategoriaClick = (categoria) => {
     navigate(`/categoria/${encodeURIComponent(categoria)}`);
   };
 
+  // Detecta cambios de tamaño para adaptar el menú automáticamente
+  useEffect(() => {
+    const handleResize = () => setEsMovil(window.innerWidth <= 768);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   return (
     <aside
       className={`menu-lateral${abierto ? " abierto" : ""}`}
-      onMouseEnter={() => setAbierto(true)}
-      onMouseLeave={() => setAbierto(false)}
+      onMouseEnter={() => !esMovil && setAbierto(true)}
+      onMouseLeave={() => !esMovil && setAbierto(false)}
     >
       <div className="menu-lateral-header">
-        <button
-          className="menu-lateral-toggle"
-          onClick={() => setAbierto(!abierto)}
-          title={abierto ? "Colapsar" : "Expandir"}
-        >
-          {abierto ? <FaChevronLeft /> : <FaChevronRight />}
-        </button>
-        {abierto && <span className="menu-lateral-logo">UtnTech</span>}
+        {!esMovil && (
+          <button
+            className="menu-lateral-toggle"
+            onClick={() => setAbierto(!abierto)}
+            title={abierto ? "Colapsar" : "Expandir"}
+          >
+            {abierto ? <FaChevronLeft /> : <FaChevronRight />}
+          </button>
+        )}
+        {abierto && !esMovil && (
+          <span className="menu-lateral-logo">UTNTech</span>
+        )}
       </div>
+
       <ul className="menu-lateral-list">
         {categorias.map((cat) => (
           <li
             key={cat.nombre}
             className="menu-lateral-item"
             onClick={() => handleCategoriaClick(cat.nombre)}
-            style={{ cursor: "pointer" }}
           >
             <span className="menu-lateral-icon">{cat.icon}</span>
-            {abierto && <span className="menu-lateral-text">{cat.nombre}</span>}
+            {abierto && !esMovil && (
+              <span className="menu-lateral-text">{cat.nombre}</span>
+            )}
+            {esMovil && (
+              <span className="menu-lateral-text">{cat.nombre}</span>
+            )}
           </li>
         ))}
       </ul>
