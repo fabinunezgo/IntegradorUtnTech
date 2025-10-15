@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
-import productos from "../Jsdata";
+import productos from "../js/Jsdata";
 import ListaProducto from "../components/ListaProducto";
 
 function normalizar(texto) {
