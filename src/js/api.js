@@ -1,5 +1,5 @@
 
-const API_BASE_URL = "https://backendintegrador2-production.up.railway.app"; 
+const API_BASE_URL = "https://backendintegrador2-production.up.railway.app/api"; 
 
 // --- Sucursales ---
 export const getBranches = async () => {
@@ -63,4 +63,8 @@ export const loginUser = async (credenciales) => {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(credenciales),
   }).then(res => res.json());
+};
+
+export const getUsers = async () => {
+  return fetch(`${API_BASE_URL}/users`).then(res => res.json());
 };

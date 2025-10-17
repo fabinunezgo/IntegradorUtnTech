@@ -1,16 +1,27 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaPlusCircle, FaBoxOpen } from "react-icons/fa";
 import "../css/dashborad.css";
 
 export default function Dashboard() {
   const navigate = useNavigate();
-  const usuario = JSON.parse(sessionStorage.getItem("usuario"));
+  let usuario = null;
 
-  if (!usuario) {
-    navigate("/login");
-    return null;
+  try {
+    const storedUser = sessionStorage.getItem("usuario");
+    usuario = storedUser && storedUser !== "undefined" ? JSON.parse(storedUser) : null;
+  } catch (error) {
+    console.error("Error al parsear usuario:", error);
+    usuario = null;
   }
+
+  useEffect(() => {
+    if (!usuario) {
+      navigate("/login");
+    }
+  }, [usuario, navigate]);
+
+  if (!usuario) return null;
 
   return (
     <div className="dashboard-page">
@@ -20,6 +31,7 @@ export default function Dashboard() {
           className="dashboard-btn-logout"
           onClick={() => {
             sessionStorage.removeItem("usuario");
+            sessionStorage.removeItem("token");
             navigate("/login");
           }}
         >
