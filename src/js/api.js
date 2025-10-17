@@ -21,12 +21,18 @@ export const getProductById = async (id) => {
 };
 
 export const createProduct = async (producto) => {
+  const token = sessionStorage.getItem("token"); // ← solución
+
   return fetch(`${API_BASE_URL}/products`, {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`
+    },
     body: JSON.stringify(producto),
   }).then(res => res.json());
 };
+
 
 export const updateProduct = async (id, producto) => {
   return fetch(`${API_BASE_URL}/products/${id}`, {

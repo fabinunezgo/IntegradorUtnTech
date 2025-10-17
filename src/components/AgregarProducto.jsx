@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { FaArrowLeft } from "react-icons/fa";
 import "../css/agregarProducto.css";
+import { createProduct } from "../js/api";
 
 const categorias = [
   "Computadoras y Tablets",
@@ -17,9 +18,33 @@ export default function AgregarProducto() {
   const [precio, setPrecio] = useState("");
   const [stock, setStock] = useState("");
 
-  const handleGuardar = (e) => {
+  const handleGuardar = async (e) => {
     e.preventDefault();
-    console.log({ nombre, categoria, descripcion, precio, stock });
+
+    const nuevoProducto = {
+      nombre,
+      descripcion,
+      URLImagen: "https://miweb.com/imagenes/imagen-generica.jpg", 
+      precioUnitario: parseFloat(precio),
+      idCategoria: 1, 
+      idSucursal: 3,  
+      activo: 1
+    };
+
+    try {
+      const res = await createProduct(nuevoProducto);
+      console.log("Producto creado:", res);
+      alert("Producto guardado exitosamente");
+      
+      setNombre("");
+      setCategoria(categorias[0]);
+      setDescripcion("");
+      setPrecio("");
+      setStock("");
+    } catch (error) {
+      console.error("Error al guardar producto:", error);
+      alert("Error al guardar el producto");
+    }
   };
 
   const handleVolver = () => {
@@ -43,6 +68,7 @@ export default function AgregarProducto() {
             value={nombre}
             onChange={(e) => setNombre(e.target.value)}
             placeholder="Ingrese el nombre del producto"
+            required
           />
 
           <label>Categoría:</label>
@@ -60,6 +86,7 @@ export default function AgregarProducto() {
             onChange={(e) => setDescripcion(e.target.value)}
             placeholder="Ingrese una descripción del producto"
             rows="3"
+            required
           />
 
           <label>Precio:</label>
@@ -68,6 +95,7 @@ export default function AgregarProducto() {
             value={precio}
             onChange={(e) => setPrecio(e.target.value)}
             placeholder="Ingrese el precio"
+            required
           />
 
           <label>Stock:</label>
@@ -76,6 +104,7 @@ export default function AgregarProducto() {
             value={stock}
             onChange={(e) => setStock(e.target.value)}
             placeholder="Ingrese cantidad disponible"
+            required
           />
 
           <button type="submit" className="btn-guardar">Guardar Producto</button>
