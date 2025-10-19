@@ -7,7 +7,7 @@ export default function ListaProducto({ productos }) {
   }
 
   return (
-    <div className="cards-grid">
+    <div className="cards-grid-filas">
       {productos.map((p) => (
         <TarjetaProducto key={p.idProducto} producto={p} />
       ))}

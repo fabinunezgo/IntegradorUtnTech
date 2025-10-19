@@ -4,84 +4,168 @@
   border-radius: 16px;
   box-shadow: 0 4px 24px rgba(0,105,158,0.07);
   padding: 1.5rem 1.2rem;
-  margin: 0;
   transition: box-shadow 0.2s, transform 0.2s;
   height: 320px;
+  width: 260px;
+  min-width: 260px;
+  max-width: 260px;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
+  align-items: stretch;
   gap: 0.7rem;
-  flex: 1 1 260px;
-  min-width: 220px;
   border: 1px solid #e5e7eb;
-   width: 260px;      
-  height: 320px;    
-  min-width: 260px;  
-  max-width: 260px;  
   box-sizing: border-box;
-  display: flex;
 }
+
+.cards-grid-filas {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2.2rem;
+  max-width: 1500px;
+  margin: 0 auto;
+  padding: 0 30px;
+}
+
 
 .producto-card:hover {
   box-shadow: 0 8px 32px rgba(0,105,158,0.13);
-  transform: translateY(-4px) scale(1.02);
+  transform: scale(1.03);
   border-color: #163d86;
 }
 
 .producto-card h3 {
-  font-size: 1.15rem;
+  font-size: 1.12rem;
   font-weight: 700;
-  color:#0C223F;
-  margin: 0 0 0.2rem 0;
-  line-height: 1.2;
-  letter-spacing: 0.5px;
+  color: #0C223F;
+  margin-bottom: 0.15rem;
+  margin-top: 0.1rem;
+  line-height: 1.18;
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.producto-card p {
-  font-size: 1rem;
-  color: #091337;
-  margin: 0 0 0.2rem 0;
-}
-.producto-card p:nth-child(3) {
-  color: #277bbe;
-  font-weight: 700;
-  font-size: 1.08rem;
-  background: none;
-  border-radius: 0;
-  padding: 0;
-  display: inline;
+.producto-card p,
+.cat-tag {
+  font-size: 0.98rem;
+  color: #181818; 
+  margin: 0 0 0.16rem 0;
+  line-height: 1.18;
 }
 
-.producto-card p:nth-child(4) {
-  background: none;
-  border-radius: 0;
-  padding: 0;
-  color: #002a9e;
-  font-size: 0.95rem;
-  display: inline;
+.cat-tag {
+  background: #eef7ff;
+  color: #1560ae;
+  font-size: 0.97rem;
+  font-weight: 500;
+  border-radius: 8px;
+  padding: 2px 12px;
+  display: inline-block;
+  align-self: flex-start;
+}
+
+.producto-imagen {
+  width: 72px;
+  height: 72px;
+  object-fit: cover;
+  margin: 0 auto 1.1rem auto; /* Antes: 0.5rem, ahora 1.1rem o más */
+  border-radius: 8px;
 }
 
 .btn-comprar {
   margin-top: auto;
-  padding: 4px;
+  padding: 8px;
   background-color: #d4a017;
   color: #fff;
   border: none;
   border-radius: 10px;
   font-weight: bold;
   cursor: pointer;
-  align-items: center;
-  justify-content: center; 
-  gap: 6px;
-  font-size: 0.95rem;      
-  text-align: center;       
+  font-size: 0.97rem;
+  text-align: center;
   transition: background-color 0.2s, transform 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
 }
-
 .btn-comprar:hover {
   background-color: #0C223F;
   transform: translateY(-2px);
 }
+.categoria-icono, .icono-carrito {
+  font-size: 1.6rem;
+  color: #176bbe;
+}
 
-.icono-carrito {
-  font-size: 1rem; 
+/* MODAL DETALLE */
+.modal-overlay {
+  position: fixed;
+  z-index: 900;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(5,24,35,0.38);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.modal-content {
+  background: #fff;
+  border-radius: 18px;
+  max-width: 430px;
+  width: 96vw;
+  min-width: 270px;
+  padding: 2.4rem 1.7rem 2.1rem 1.7rem;
+  box-shadow: 0 14px 42px rgba(17, 47,105 ,.20);
+  position: relative;
+  text-align: left;
+  animation: modalShow .2s;
+}
+@keyframes modalShow {
+  from { opacity: 0; transform: translateY(38px) scale(.97);}
+  to { opacity: 1; transform: none;}
+}
+.modal-close {
+  position: absolute;
+  top: 14px;
+  right: 16px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 1.7rem;
+  color: #176bbe;
+  transition: color 0.18s;
+}
+.modal-close:hover {
+  color: #d41f48;
+}
+.modal-content img {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.modal-content h2 {
+  margin: 12px 0 10px 0;
+  color: #0C223F;
+}
+.modal-content h3 {
+  font-weight: 500;
+  color: #277bbe;
+}
+.modal-content p {
+  color: #181818;
+  font-size: 1rem;
+  margin-bottom: 7px;
+}
+
+.botones-accion {
+  display: flex;
+  gap: 30px;
+  justify-content: center;
 }

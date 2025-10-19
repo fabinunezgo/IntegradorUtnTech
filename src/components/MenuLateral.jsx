@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import "../css/MenuLateral.css";
-import { FaLaptop, FaMobileAlt, FaHeadphones, FaTv, FaHome, FaChevronLeft, FaChevronRight,} from "react-icons/fa";
+import { FaLaptop, FaMobileAlt, FaHeadphones, FaTv, FaHome, FaChevronLeft, FaChevronRight, } from "react-icons/fa";
 
 const categorias = [
   { nombre: "Computadoras y Tablets", icon: <FaLaptop /> },
@@ -42,7 +42,10 @@ export default function MenuLateral() {
           </button>
         )}
         {abierto && !esMovil && (
-          <span className="menu-lateral-logo">UTNTech</span>
+          <Link to="/" className="menu-lateral-logo">
+            UTNTech
+          </Link>
+
         )}
       </div>
 

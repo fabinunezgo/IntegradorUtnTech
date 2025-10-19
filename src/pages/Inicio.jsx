@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import productos from "../js/Jsdata";
 import ListaProducto from "../components/ListaProducto";
+import { getProducts } from "../js/api";
+import "../css/inicio.css";
 
 function normalizar(texto) {
   return texto
@@ -11,6 +12,41 @@ function normalizar(texto) {
 
 export default function Inicio({ busqueda }) {
   const { nombreCategoria } = useParams();
+  const [productos, setProductos] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  const [pagina, setPagina] = useState(1);
+  const productosPorPagina = 8;
+
+  const mapeoCategorias = {
+    2: "Computadoras y Tablets",
+    3: "Celulares",
+    4: "Audio",
+    5: "TV y Proyección",
+    6: "Hogar y Oficina"
+  };
+
+  useEffect(() => {
+    function cargarProductos() {
+      getProducts()
+        .then((data) => {
+          const productosAdaptados = (data.data ? data.data : data).map(p => ({
+            idProducto: p.IdProducto,
+            nombre: p.Nombre,
+            descripcion: p.Descripcion,
+            precioUnitario: p.PrecioUnitario,
+            categoria: mapeoCategorias[p.IdCategoria] || "Sin categoría",
+            urlImagen: p.URLImagen
+          }));
+          setProductos(productosAdaptados);
+          setLoading(false);
+        })
+        .catch(() => setLoading(false));
+    }
+    cargarProductos();
+    const interval = setInterval(cargarProductos, 5 * 60 * 1000);
+    return () => clearInterval(interval);
+  }, []);
 
   let productosFiltrados = nombreCategoria
     ? productos.filter(
@@ -29,9 +65,35 @@ export default function Inicio({ busqueda }) {
     );
   }
 
+  useEffect(() => {
+    setPagina(1);
+  }, [nombreCategoria, busqueda]);
+
+  // Products for current page
+  const totalPaginas = Math.ceil(productosFiltrados.length / productosPorPagina);
+  const indiceInicio = (pagina - 1) * productosPorPagina;
+  const productosPaginados = productosFiltrados.slice(indiceInicio, indiceInicio + productosPorPagina);
+
+  if (loading) return <div>Cargando productos...</div>;
+
   return (
-    <>
-      <ListaProducto productos={productosFiltrados} />
-    </>
+    <div className="main-content">
+      <ListaProducto productos={productosPaginados} />
+      <div className="paginador">
+        <button
+          onClick={() => setPagina(p => Math.max(1, p - 1))}
+          disabled={pagina === 1}
+        >
+          Anterior
+        </button>
+        <span>Página {pagina} de {totalPaginas}</span>
+        <button
+          onClick={() => setPagina(p => Math.min(totalPaginas, p + 1))}
+          disabled={pagina === totalPaginas}
+        >
+          Siguiente
+        </button>
+      </div>
+    </div>
   );
 }
