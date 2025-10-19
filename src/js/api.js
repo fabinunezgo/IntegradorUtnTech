@@ -1,5 +1,7 @@
 
-const API_BASE_URL = "https://backendintegrador2-production.up.railway.app/api"; 
+const API_BASE_URL = "https://backendintegrador2-production.up.railway.app/api";
+
+const getToken = () => sessionStorage.getItem("token");
 
 // --- Sucursales ---
 export const getBranches = async () => {
@@ -21,13 +23,11 @@ export const getProductById = async (id) => {
 };
 
 export const createProduct = async (producto) => {
-  const token = sessionStorage.getItem("token"); // ← solución
-
   return fetch(`${API_BASE_URL}/products`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      "Authorization": `Bearer ${token}`
+      "Authorization": `Bearer ${getToken()}`
     },
     body: JSON.stringify(producto),
   }).then(res => res.json());
@@ -35,15 +35,29 @@ export const createProduct = async (producto) => {
 
 
 export const updateProduct = async (id, producto) => {
-  return fetch(`${API_BASE_URL}/products/${id}`, {
+  const res = await fetch(`${API_BASE_URL}/products/${id}`, {
     method: "PUT",
-    headers: { "Content-Type": "application/json" },
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${getToken()}`
+    },
     body: JSON.stringify(producto),
-  }).then(res => res.json());
+  });
+
+  if (!res.ok) {
+    const errorData = await res.json();
+    throw new Error(`Error ${res.status}: ${errorData.message || "No se pudo actualizar el producto"}`);
+  }
+
+  return await res.json();
 };
 
+
 export const deleteProduct = async (id) => {
-  return fetch(`${API_BASE_URL}/products/${id}`, { method: "DELETE" }).then(res => res.json());
+  return fetch(`${API_BASE_URL}/products/${id}`, {
+    method: "DELETE",
+    headers: { "Authorization": `Bearer ${getToken()}` }
+  }).then(res => res.json());
 };
 
 export const buyProduct = async (compra) => {

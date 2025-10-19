@@ -1,92 +1,286 @@
-/* Fondo azul toda la pantalla */
-.inventario-page {
-  background-color: #0c223f;
-  min-height: 100vh;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  padding: 40px 0;
+body {
+  background: #f7f7f7;
   margin: 0;
+  padding: 0;
 }
 
-/* Card centrada */
+.main-content {
+  background: #f7f7f7;
+  min-height: calc(100vh - 70px);
+  padding-bottom: 80px;
+  padding-top: 36px;
+  width: 100%;
+}
+
 .inventario-card {
   background-color: #fff;
-  border-radius: 12px;
-  padding: 30px;
-  width: 90%;
-  max-width: 1000px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-  text-align: left;
+  border-radius: 14px;
+  padding: 32px;
+  width: 95%;
+  max-width: 1200px;
+  margin: 0 auto 30px auto;
+  box-shadow: 0 4px 15px rgba(0,40,70,0.12);
 }
 
-/* Titulo centrado y linea amarilla */
 .titulo-inventario {
-  text-align: center;
-  color: #0C223F;
-  margin-bottom: 5px;
+  font-size: 2rem;
+  font-weight: 800;
+  color: #0c223f;
+  margin-bottom: 10px;
+  letter-spacing: 0.01em;
 }
-
 .linea-amarilla-inventario {
-  width: 300px;
-  height: 4px;
-  background-color: #d4a017;
-  margin: 0 auto 20px;
+  width: 72px;
+  height: 5px;
+  background: #e2b100;
+  border-radius: 2px;
+  margin-bottom: 22px;
 }
 
-/* Tabla */
-.tabla-inventario {
-  width: 100%;
-  border-collapse: collapse;
+/* Cambia SOLO el grid de inventario para que nunca se salga */
+.inventario-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);   /* 4 columnas siempre */
+  gap: 2.2rem;
+  width: 100%;           /* Que use TODO el ancho disponible del papá */
+  /* NO max-width aquí */
+  margin: 0 auto;
+  padding: 0;            /* O ajústalo si quieres más espacio */
 }
 
-.tabla-inventario th,
-.tabla-inventario td {
-  border: 1px solid #ddd;
-  padding: 10px;
-  text-align: left;
-}
-
-.tabla-inventario th {
-  background-color: #f4f4f4;
-  color: #0C223F;
-}
-
-/* Botones de acción */
-.acciones .botones-accion {
+/* Card de producto - ambos grids */
+.producto-card {
+  font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(0,105,158,0.07);
+  padding: 1.5rem 1.2rem;
+  transition: box-shadow 0.2s, transform 0.2s;
+  height: 320px;
+  width: 260px;
+  min-width: 260px;
+  max-width: 260px;
+  margin: 0 auto;
   display: flex;
-  gap: 10px;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.7rem;
+  border: 1px solid #e5e7eb;
+  box-sizing: border-box;
+  position: relative;
+}
+.producto-card:hover {
+  box-shadow: 0 10px 32px rgba(0,105,158,0.14);
+  transform: scale(1.03);
+  border-color: #176bbe;
 }
 
-.acciones button {
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-size: 1.2rem;
+.producto-imagen {
+  width: 72px;
+  height: 72px;
+  object-fit: cover;
+  margin: 0 auto 1.1rem auto;
+  border-radius: 8px;
+}
+
+.producto-titulo {
+  font-size: 1.12rem;
+  font-weight: 700;
   color: #0C223F;
-  transition: color 0.2s;
+  margin-bottom: 0.7rem;
+  margin-top: 0.1rem;
+  line-height: 1.18;
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.producto-precio {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #181818;
+}
+.cat-tag {
+  background: #eef7ff;
+  color: #1560ae;
+  font-size: 0.97rem;
+  font-weight: 500;
+  border-radius: 8px;
+  padding: 2px 12px;
+  display: inline-block;
+  align-self: flex-start;
 }
 
-.acciones button:hover {
-  color: #d4a017;
+.botones-accion {
+  display: flex;
+  gap: 14px;
+  margin-bottom: 10px;
 }
-
-/* Boton volver */
-.btn-volver {
-  background-color: #0C223F;
-  color: #fff;
-  border: none;
-  padding: 8px 12px;
-  border-radius: 6px;
+.btn-editar, .btn-eliminar {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 7px 14px;
   cursor: pointer;
-  margin-bottom: 20px;
+  color: #277bbe;
+  font-size: 1rem;
+  transition: background 0.2s, color 0.2s;
   display: flex;
   align-items: center;
-  gap: 5px;
-  transition: 0.2s;
+  gap: 6px;
+}
+.btn-editar:hover {
+  background: #f0f7ff;
+  color: #2c91d2;
+}
+.btn-eliminar:hover {
+  background: #ffe7e7;
+  color: #e63c26;
 }
 
-.btn-volver:hover {
-  background-color: #081732;
+.btn-comprar {
+  margin-top: auto;
+  padding: 8px;
+  background-color: #d4a017;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 0.97rem;
+  text-align: center;
+  transition: background-color 0.2s, transform 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+.btn-comprar:hover {
+  background-color: #0C223F;
+  transform: translateY(-2px);
+}
+.categoria-icono, .icono-carrito {
+  font-size: 1.6rem;
+  color: #176bbe;
+}
+
+/* Footer */
+.footer {
+  width: 100%;
+  background: #0c2a43;
+  color: white;
+  text-align: center;
+  padding: 16px 0 10px 0;
+  position: relative;
+  font-size: 1rem;
+  z-index: 150;
+  box-shadow: 0 -2px 8px rgba(0,0,0,0.08);
+  margin-top: 0;
+}
+
+/* Paginador */
+.paginador {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 32px 0 0 0;
+  gap: 10px;
+}
+.paginador button {
+  background: #e2b100;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1rem;
+  transition: background 0.2s;
+}
+.paginador button:disabled {
+  background: #ccc;
+  color: #444;
+  cursor: not-allowed;
+}
+.paginador span {
+  font-weight: bold;
+}
+
+/* MODAL editar/preview */
+.modal-editar-backdrop {
+  position: fixed;
+  z-index: 950;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(10,35,50,0.16);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.modal-editar-card {
+  background: #fff;
+  border-radius: 16px;
+  max-width: 430px;
+  width: 96vw;
+  min-width: 270px;
+  padding: 2.2rem 1.7rem 2.1rem 1.7rem;
+  box-shadow: 0 14px 34px rgba(17, 47,105 ,.16);
+  text-align: left;
+  position: relative;
+  animation: modalShow .21s;
+}
+@keyframes modalShow {
+  from { opacity: 0; transform: translateY(28px) scale(.97);}
+  to { opacity: 1; transform: none;}
+}
+
+.modal-editar-volver {
+  position: absolute;
+  top: 14px;
+  left: 18px;
+  border: none;
+  background: #f5f5f7;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1.25rem;
+  color: #176bbe;
+  transition: background 0.15s, color 0.16s;
+}
+
+.modal-editar-titulo {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: #19385c;
+}
+
+.modal-editar-input, .modal-editar-lectura {
+  width: 100%;
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  margin-bottom: 12px;
+  font-size: 1rem;
+}
+.modal-editar-guardar {
+  width: 100%;
+  padding: 10px 0;
+  border-radius: 8px;
+  background: #e2b100;
+  color: #fff;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  margin-top: 18px;
+}
+.modal-editar-guardar:hover {
+  background: #19385c;
+}
+.modal-editar-imagen {
+  width: 72px;
+  height: 72px;
+  object-fit: cover;
+  display: block;
+  margin: 0 auto 14px auto;
+  border-radius: 9px;
 }
