@@ -41,7 +41,7 @@
   margin-right: auto;
 }
 
-/* tarjetas del mismo tamaño */
+
 .sucursal-card {
   background-color: white;
   border-radius: 12px;
@@ -82,7 +82,7 @@
 }
 
 
-/* Modal */
+
 .modal-backdrop {
   position: fixed;
   inset: 0;
