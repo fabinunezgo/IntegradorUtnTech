@@ -40,7 +40,7 @@ export default function Inventario() {
   const indiceInicio = (pagina - 1) * ITEMS_POR_PAGINA;
   const productosPag = productos.slice(indiceInicio, indiceInicio + ITEMS_POR_PAGINA);
 
-  // Editar/Eliminar...
+  
   const handleEditar = (producto) => {
     setProductoEditando(producto);
     setFormData({
@@ -91,14 +91,14 @@ export default function Inventario() {
 
 
   return (
-    <div className="main-content"> {/* Usa la misma clase de inicio */}
+    <div className="main-content"> 
       <div className="inventario-card">
         <button className="btn-volver" onClick={() => window.history.back()}>
           <FaArrowLeft />
         </button>
         <h2 className="titulo-inventario">Inventario de Productos</h2>
         <div className="linea-amarilla-inventario"></div>
-        <div className="inventario-cards-grid"> {/* igual que .cards-grid de inicio */}
+        <div className="inventario-cards-grid"> 
           {productosPag.map(p => (
             <TarjetaProducto
               key={p.IdProducto}
@@ -108,7 +108,7 @@ export default function Inventario() {
                 descripcion: p.Descripcion,
                 precioUnitario: p.PrecioUnitario,
                 urlImagen: p.URLImagen,
-                categoria: p.Categoria || p.categoria // si tienes string
+                categoria: p.Categoria || p.categoria 
               }}
               onEditar={() => handleEditar(p)}
               onEliminar={() => handleEliminar(p)}
@@ -171,7 +171,7 @@ export default function Inventario() {
           onChange={e =>
             setProductoEditando({
               ...productoEditando,
-              Activo: Number(e.target.value)  // 1: sí, 0: no
+              Activo: Number(e.target.value) 
             })
           }
         >
