@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { FaArrowLeft } from "react-icons/fa";
 import TarjetaProducto from "./TarjetaProducto";
-import Footer from "./Footer"; 
+import Footer from "./Footer";
 import "../css/inicio.css";
 import "../css/agregarProducto.css";
 import "../css/cards.css";
@@ -16,7 +16,11 @@ export default function Inventario() {
   const [formData, setFormData] = useState({
     Nombre: "",
     Descripcion: "",
-    PrecioUnitario: ""
+    URLImagen: "",
+    PrecioUnitario: "",
+    IdCategoria: "",
+    IdSucursal: "",
+    Activo: ""
   });
   const [pagina, setPagina] = useState(1);
 
@@ -40,15 +44,19 @@ export default function Inventario() {
   const indiceInicio = (pagina - 1) * ITEMS_POR_PAGINA;
   const productosPag = productos.slice(indiceInicio, indiceInicio + ITEMS_POR_PAGINA);
 
-  
   const handleEditar = (producto) => {
     setProductoEditando(producto);
     setFormData({
       Nombre: producto.Nombre,
       Descripcion: producto.Descripcion,
-      PrecioUnitario: producto.PrecioUnitario
+      URLImagen: producto.URLImagen,
+      PrecioUnitario: producto.PrecioUnitario,
+      IdCategoria: producto.IdCategoria || producto.idCategoria,
+      IdSucursal: producto.IdSucursal || producto.idSucursal,
+      Activo: producto.Activo
     });
   };
+
   const handleEliminar = async (producto) => {
     const confirmacion = window.confirm(`¿Eliminar "${producto.Nombre}"?`);
     if (!confirmacion) return;
@@ -63,42 +71,36 @@ export default function Inventario() {
   };
 
   const handleCerrarModal = () => setProductoEditando(null);
+
   const handleGuardarCambios = async () => {
-  try {
-    console.log("--- Producto editando (original) ---", productoEditando);
-    const productoActualizado = {
-      nombre: formData.Nombre,
-      descripcion: formData.Descripcion,
-      URLImagen: productoEditando.URLImagen,
-      precioUnitario: parseFloat(formData.PrecioUnitario),
-      idCategoria: Number(productoEditando.idCategoria || productoEditando.IdCategoria),
-      idSucursal: Number(productoEditando.idSucursal || productoEditando.IdSucursal),
-      activo: Number(productoEditando.Activo)
-    };
-    console.log("--- Producto enviado en PUT ---", productoActualizado);
-      console.log("IdProducto:", productoEditando.IdProducto);
-    await updateProduct(productoEditando.IdProducto, productoActualizado);
-       const respuesta = await updateProduct(productoEditando.IdProducto, productoActualizado);
-    console.log("--- Respuesta update product ---", respuesta);
-    await fetchProductos();
-    setProductoEditando(null);
-    alert("Producto actualizado correctamente");
-  } catch {
-    alert("No se pudo actualizar el producto");
-  }
-};
-
-
+    try {
+      const productoActualizado = {
+        nombre: formData.Nombre,
+        descripcion: formData.Descripcion,
+        URLImagen: formData.URLImagen,
+        precioUnitario: parseFloat(formData.PrecioUnitario),
+        idCategoria: Number(formData.IdCategoria),
+        idSucursal: Number(formData.IdSucursal),
+        activo: Number(formData.Activo)
+      };
+      await updateProduct(productoEditando.IdProducto, productoActualizado);
+      await fetchProductos();
+      setProductoEditando(null);
+      alert("Producto actualizado correctamente");
+    } catch {
+      alert("No se pudo actualizar el producto");
+    }
+  };
 
   return (
-    <div className="main-content"> 
+    <div className="main-content">
       <div className="inventario-card">
         <button className="btn-volver" onClick={() => window.history.back()}>
           <FaArrowLeft />
         </button>
         <h2 className="titulo-inventario">Inventario de Productos</h2>
         <div className="linea-amarilla-inventario"></div>
-        <div className="inventario-cards-grid"> 
+        <div className="inventario-cards-grid">
           {productosPag.map(p => (
             <TarjetaProducto
               key={p.IdProducto}
@@ -108,7 +110,7 @@ export default function Inventario() {
                 descripcion: p.Descripcion,
                 precioUnitario: p.PrecioUnitario,
                 urlImagen: p.URLImagen,
-                categoria: p.Categoria || p.categoria 
+                categoria: p.Categoria || p.categoria
               }}
               onEditar={() => handleEditar(p)}
               onEliminar={() => handleEliminar(p)}
@@ -123,70 +125,84 @@ export default function Inventario() {
         </div>
       </div>
       <Footer />
-    
-     {productoEditando && (
-  <div className="modal-editar-backdrop">
-    <div className="agregar-producto-card">
-      <button className="btn-volver" onClick={handleCerrarModal}>
-        <FaArrowLeft />
-      </button>
-      <h2 className="titulo-agregar">Editar Producto</h2>
-      <div className="linea-amarilla-agregar"></div>
-      <form
-        onSubmit={e => {
-          e.preventDefault();
-          handleGuardarCambios();
-        }}
-      >
-        <label>Nombre del Producto:</label>
-        <input
-          type="text"
-          value={formData.Nombre}
-          onChange={e => setFormData({ ...formData, Nombre: e.target.value })}
-          placeholder="Ingrese el nombre del producto"
-          required
-        />
 
-        <label>Descripción:</label>
-        <textarea
-          value={formData.Descripcion}
-          onChange={e => setFormData({ ...formData, Descripcion: e.target.value })}
-          placeholder="Ingrese una descripción del producto"
-          rows="3"
-          required
-        />
+      {productoEditando && (
+        <div className="modal-editar-backdrop">
+          <div className="agregar-producto-card">
+            <button className="btn-volver" onClick={handleCerrarModal}>
+              <FaArrowLeft />
+            </button>
+            <h2 className="titulo-agregar">Editar Producto</h2>
+            <div className="linea-amarilla-agregar"></div>
+            <form
+              onSubmit={e => {
+                e.preventDefault();
+                handleGuardarCambios();
+              }}
+            >
+              <label>Nombre:</label>
+              <input
+                type="text"
+                value={formData.Nombre}
+                onChange={e => setFormData({ ...formData, Nombre: e.target.value })}
+                required
+              />
 
-        <label>Precio:</label>
-        <input
-          type="number"
-          value={formData.PrecioUnitario}
-          onChange={e => setFormData({ ...formData, PrecioUnitario: e.target.value })}
-          placeholder="Ingrese el precio"
-          required
-        />
+              <label>Descripción:</label>
+              <textarea
+                value={formData.Descripcion}
+                onChange={e => setFormData({ ...formData, Descripcion: e.target.value })}
+                required
+              />
 
-        <label>En stock:</label>
-        <select
-          value={productoEditando.Activo ? "1" : "0"}
-          onChange={e =>
-            setProductoEditando({
-              ...productoEditando,
-              Activo: Number(e.target.value) 
-            })
-          }
-        >
-          <option value="1">Sí</option>
-          <option value="0">No</option>
-        </select>
+              <label>Imagen (URL):</label>
+              <input
+                type="text"
+                value={formData.URLImagen}
+                onChange={e => setFormData({ ...formData, URLImagen: e.target.value })}
+                required
+              />
 
-        <button type="submit" className="btn-guardar">
-          Guardar Cambios
-        </button>
-      </form>
-    </div>
-  </div>
-)}
+              <label>Precio:</label>
+              <input
+                type="number"
+                value={formData.PrecioUnitario}
+                onChange={e => setFormData({ ...formData, PrecioUnitario: e.target.value })}
+                required
+              />
 
+              <label>Categoría (ID):</label>
+              <input
+                type="number"
+                value={formData.IdCategoria}
+                onChange={e => setFormData({ ...formData, IdCategoria: e.target.value })}
+                required
+              />
+
+              <label>Sucursal (ID):</label>
+              <input
+                type="number"
+                value={formData.IdSucursal}
+                onChange={e => setFormData({ ...formData, IdSucursal: e.target.value })}
+                required
+              />
+
+              <label>Activo:</label>
+              <select
+                value={formData.Activo}
+                onChange={e => setFormData({ ...formData, Activo: Number(e.target.value) })}
+              >
+                <option value={1}>Sí</option>
+                <option value={0}>No</option>
+              </select>
+
+              <button type="submit" className="btn-guardar">
+                Guardar Cambios
+              </button>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
