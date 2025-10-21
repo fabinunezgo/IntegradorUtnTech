@@ -37,16 +37,14 @@ body {
   margin-bottom: 22px;
 }
 
-/* Cambia SOLO el grid de inventario para que nunca se salga */
+
 .inventario-cards-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);   /* 4 columnas siempre */
   gap: 2.2rem;
-  width: 100%;           /* Que use TODO el ancho disponible del papá */
-  /* NO max-width aquí */
+  width: 100%;           
   margin: 0 auto;
-  padding: 0;            /* O ajústalo si quieres más espacio */
-}
+  padding: 0;            }
 
 /* Card de producto - ambos grids */
 .producto-card {
@@ -164,7 +162,7 @@ body {
   color: #176bbe;
 }
 
-/* Footer */
+
 .footer {
   width: 100%;
   background: #0c2a43;
@@ -178,7 +176,7 @@ body {
   margin-top: 0;
 }
 
-/* Paginador */
+
 .paginador {
   display: flex;
   justify-content: center;
@@ -206,7 +204,7 @@ body {
   font-weight: bold;
 }
 
-/* MODAL editar/preview */
+/* MODAL editar */
 .modal-editar-backdrop {
   position: fixed;
   z-index: 950;

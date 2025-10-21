@@ -11,6 +11,7 @@ import Login from "./components/Login";
 import Dashboard from "./components/Dashboard";
 import AgregarProducto from "./components/AgregarProducto";
 import Inventario from "./components/Inventario";
+import Users from "./components/Users";
 import "./App.css";
 
 function AppContent() {
@@ -30,6 +31,7 @@ function AppContent() {
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/dashboard/add-product" element={<AgregarProducto />} />
               <Route path="/dashboard/inventory" element={<Inventario />} />
+              <Route path="/dashboard/users" element={<Users />} />
               <Route path="/" element={<Inicio busqueda={busqueda} />} />
               <Route path="/servicios" element={<Servicios />} />
               <Route path="/acerca" element={<Acerca />} />

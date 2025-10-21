@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { FaPlusCircle, FaBoxOpen } from "react-icons/fa";
+import { FaPlusCircle, FaBoxOpen, FaUserCog } from "react-icons/fa";
 import "../css/dashborad.css";
 
 export default function Dashboard() {
@@ -55,6 +55,14 @@ export default function Dashboard() {
           <FaBoxOpen className="dashboard-icon" />
           <h3 className="dashboard-card-titulo">Inventario</h3>
           <p className="dashboard-card-desc">Ver y administrar los productos existentes</p>
+        </div>
+        <div
+          className="dashboard-card dashboard-card-users"
+          onClick={() => navigate("/dashboard/users")}
+        >
+          <FaUserCog className="dashboard-icon" />
+          <h3 className="dashboard-card-titulo">Administrar Trabajadores</h3>
+          <p className="dashboard-card-desc">Gestionar usuarios y permisos del sistema</p>
         </div>
       </div>
     </div>
