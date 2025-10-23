@@ -105,6 +105,69 @@
   font-size: 1.18rem;
 }
 
+.btn-eliminar-usuario {
+  background: none;
+  border: none;
+  color: #d9534f;
+  font-size: 1.4rem;
+  margin-left: auto; 
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: color .17s;
+}
+.btn-eliminar-usuario:hover {
+  color: #b0130a;
+}
+
+/* Botón grande para agregar usuario */
+.btn-agregar-usuario {
+  position: fixed;
+  bottom: 38px;
+  right: 38px;
+  width: 63px;
+  height: 63px;
+  border-radius: 50%;
+  background: #d4a017; 
+  color: #283042;
+  border: none;
+  box-shadow: 0 2px 18px #0003;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 1.58rem;
+  padding: 0;
+  z-index: 999;
+  transition: background .2s, box-shadow .17s, filter .17s;
+}
+.btn-agregar-usuario:hover {
+  background: #ffcf1b;
+  filter: brightness(1.07);
+}
+
+.modal-agregar-user {
+  position: fixed;
+  left: 0; top: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(33,43,65,0.17);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999; /* mucho mayor que otros elementos */
+}
+.agregar-user-card {
+  z-index: 10000; /* asegura estar arriba */
+  position: fixed;
+  background-color: white;
+  border-radius: 12px;
+  padding: 40px 50px;
+  width: 100%;
+  max-width: 500px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+}
+
 @media(max-width:500px) {
   .user-card { width: 98vw; min-width: 0; padding: 1rem 0.4rem 1rem 0.7rem;}
 }
