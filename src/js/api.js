@@ -88,3 +88,12 @@ export const loginUser = async (credenciales) => {
 export const getUsers = async () => {
   return fetch(`${API_BASE_URL}/users`).then(res => res.json());
 };
+
+export const deactivateUser = async (id) => {
+  return fetch(`${API_BASE_URL}/users/${id}/deactivate`, {
+    method: "DELETE",
+    headers: {
+      "Authorization": `Bearer ${getToken()}`
+    }
+  }).then(res => res.json());
+};

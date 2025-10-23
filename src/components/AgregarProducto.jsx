@@ -27,9 +27,7 @@ export default function AgregarProducto() {
   const [descripcion, setDescripcion] = useState("");
   const [precio, setPrecio] = useState("");
   const [stock, setStock] = useState("");
-
-  const urlImagenFija = "https://cdn-icons-png.flaticon.com/512/2345/2345530.png";
-
+  const [URLImagen, setUrlImagen] = useState("");
   const handleGuardar = async (e) => {
     e.preventDefault();
 
@@ -39,7 +37,7 @@ export default function AgregarProducto() {
     const nuevoProducto = {
       nombre,
       descripcion,
-      URLImagen: urlImagenFija,
+      URLImagen,
       precioUnitario: parseFloat(precio),
       idCategoria: catObj.id || 1,
       idSucursal: idSucursal,
@@ -122,8 +120,15 @@ export default function AgregarProducto() {
             required
           />
 
-          <label>Imagen asociada:</label>
-          <img src={urlImagenFija} alt="Vista previa fija" style={{ width: 120, height: 120, margin: 10 }} />
+          <label>URL de la Imagen:</label>
+          <input
+            type="text"
+            value={URLImagen}
+            onChange={e => setUrlImagen(e.target.value)}
+            placeholder="Ingrese la URL de la imagen"
+            required
+          />
+
 
           <button type="submit" className="btn-guardar">Guardar Producto</button>
         </form>
