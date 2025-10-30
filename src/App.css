@@ -36,12 +36,13 @@ main {
   flex-wrap: wrap;
   gap: 20px;
   justify-content: flex-start;
-  max-width: 1200px;
-  margin: 0 auto;
+
+  /* quitar/ajustar el max-width que fija el tamaño */
+  width: 100%;
+  max-width: none; /* o usa max-width: 1200px; width: 100%; para mantener responsividad */
+  margin: 0; /* eliminar centrado si no quieres espacios laterales */
 }
 
-/* Tarjetas de productos y sucursales */
-/* Prefer grid for responsive card layout */
 .cards-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -49,6 +50,7 @@ main {
   width: 100%;
   align-items: start;
 }
+
 
 /* ===== Footer ===== */
 footer {
