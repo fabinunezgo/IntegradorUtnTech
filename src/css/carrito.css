@@ -206,3 +206,26 @@
     align-items: center;
   }
 }
+
+
+/* === Animación global de entrada === */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Aplica la animación al contenedor principal */
+.app {
+  animation: fadeInUp 0.6s ease-out both;
+}
+
+/* Suaviza los cambios de tamaño y color en toda la app */
+* {
+  transition: all 0.25s ease;
+}

@@ -1,191 +1,174 @@
-body {
-  background: #f7f7f7;
-  margin: 0;
-  padding: 0;
-}
-
+/* === CONTENIDO PRINCIPAL === */
 .main-content {
-  background: #f7f7f7;
   min-height: calc(100vh - 70px);
-  padding-bottom: 80px;
-  padding-top: 36px;
+  padding: 36px 20px 80px 20px;
+  background: #f7f7f7;
   width: 100%;
 }
 
+/* === TARJETA PRINCIPAL DE INVENTARIO === */
 .inventario-card {
   background-color: #fff;
-  border-radius: 14px;
+  border-radius: 16px;
   padding: 32px;
   width: 95%;
   max-width: 1200px;
   margin: 0 auto 30px auto;
-  box-shadow: 0 4px 15px rgba(0,40,70,0.12);
+  box-shadow: 0 6px 20px rgba(0, 40, 70, 0.1);
+  animation: fadeInUp 0.5s ease-in-out both;
 }
 
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* === TÍTULO Y SEPARADOR === */
 .titulo-inventario {
   font-size: 2rem;
   font-weight: 800;
-  color: #0c223f;
+  color: #0C223F;
   margin-bottom: 10px;
-  letter-spacing: 0.01em;
+  text-align: center;
 }
+
 .linea-amarilla-inventario {
-  width: 450px;
+  width: 140px;
   height: 5px;
-  background: #e2b100;
-  border-radius: 2px;
-  margin-bottom: 22px;
+  background: #d4a017;
+  border-radius: 3px;
+  margin: 12px auto 28px auto;
 }
 
-
+/* === GRID DE PRODUCTOS (MEJORADO) === */
 .inventario-cards-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);   /* 4 columnas siempre */
-  gap: 2.2rem;
-  width: 100%;           
-  margin: 0 auto;
-  padding: 0;            }
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1.6rem;
+  justify-items: center;
+  width: 100%;
+  padding: 8px 0;
+}
 
-/* Card de producto - ambos grids */
+/* === TARJETAS DE PRODUCTOS === */
 .producto-card {
-  font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
   background: #fff;
   border-radius: 16px;
-  box-shadow: 0 4px 24px rgba(0,105,158,0.07);
+  box-shadow: 0 4px 18px rgba(0, 105, 158, 0.08);
   padding: 1.5rem 1.2rem;
-  transition: box-shadow 0.2s, transform 0.2s;
-  height: 320px;
-  width: 260px;
-  min-width: 260px;
-  max-width: 260px;
-  margin: 0 auto;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  width: 100%;
+  max-width: 320px; /* limitar tamaño en pantallas grandes */
+  min-height: 320px;
   display: flex;
   flex-direction: column;
-  align-items: stretch;
-  gap: 0.7rem;
+  align-items: center;
   border: 1px solid #e5e7eb;
   box-sizing: border-box;
-  position: relative;
-}
-.producto-card:hover {
-  box-shadow: 0 10px 32px rgba(0,105,158,0.14);
-  transform: scale(1.03);
-  border-color: #176bbe;
 }
 
-.producto-imagen {
-  width: 72px;
-  height: 72px;
-  object-fit: cover;
-  margin: 0 auto 1.1rem auto;
-  border-radius: 8px;
+.producto-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 26px rgba(0, 105, 158, 0.14);
+  border-color: #1560ae;
 }
+
 
 .producto-titulo {
-  font-size: 1.12rem;
+  font-size: 1.1rem;
   font-weight: 700;
   color: #0C223F;
-  margin-bottom: 0.7rem;
-  margin-top: 0.1rem;
-  line-height: 1.18;
-  text-align: left;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  text-align: center;
+  margin-bottom: 0.5rem;
+  line-height: 1.2;
 }
+
 .producto-precio {
   font-size: 1rem;
   font-weight: 600;
   color: #181818;
+  margin-bottom: 0.5rem;
+  text-align: center;
 }
+
 .cat-tag {
   background: #eef7ff;
   color: #1560ae;
-  font-size: 0.97rem;
+  font-size: 0.9rem;
   font-weight: 500;
   border-radius: 8px;
-  padding: 2px 12px;
+  padding: 3px 12px;
   display: inline-block;
-  align-self: flex-start;
-}
-
-.botones-accion {
-  display: flex;
-  gap: 14px;
   margin-bottom: 10px;
 }
+
+/* === BOTONES === */
+.botones-accion {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: auto;
+  width: 100%;
+}
+
 .btn-editar, .btn-eliminar {
   background: #fff;
   border: 1px solid #e5e7eb;
   border-radius: 8px;
   padding: 7px 14px;
   cursor: pointer;
-  color: #277bbe;
-  font-size: 1rem;
-  transition: 0.2s, color 0.2s;
-  display: flex;
+  font-size: 0.95rem;
+  display: inline-flex;
   align-items: center;
   gap: 6px;
+  color: #176bbe;
+  font-weight: 600;
+  transition: all 0.2s ease;
 }
+
 .btn-editar:hover {
   background: #f0f7ff;
   color: #2c91d2;
 }
+
 .btn-eliminar:hover {
   background: #ffe7e7;
   color: #e63c26;
 }
 
 .btn-comprar {
-  margin-top: auto;
-  padding: 8px;
+  margin-top: 12px;
   background-color: #d4a017;
   color: #fff;
   border: none;
   border-radius: 10px;
   font-weight: bold;
   cursor: pointer;
-  font-size: 0.97rem;
+  padding: 10px;
+  font-size: 0.95rem;
   text-align: center;
-  transition: background-color 0.2s, transform 0.2s;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
+  transition: background-color 0.25s ease, transform 0.25s ease;
+  width: 100%;
+  max-width: 180px;
 }
+
 .btn-comprar:hover {
   background-color: #0C223F;
   transform: translateY(-2px);
 }
-.categoria-icono, .icono-carrito {
-  font-size: 1.6rem;
-  color: #176bbe;
-}
 
-
-.footer {
-  width: 100%;
-  background: #0c2a43;
-  color: white;
-  text-align: center;
-  padding: 16px 0 10px 0;
-  position: relative;
-  font-size: 1rem;
-  z-index: 150;
-  box-shadow: 0 -2px 8px rgba(0,0,0,0.08);
-  margin-top: 0;
-}
-
-
+/* === PAGINADOR === */
 .paginador {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 32px 0 0 0;
+  margin-top: 32px;
   gap: 10px;
 }
+
 .paginador button {
-  background: #e2b100;
+  background: #d4a017;
   color: #fff;
   border: none;
   border-radius: 8px;
@@ -193,92 +176,321 @@ body {
   cursor: pointer;
   font-weight: bold;
   font-size: 1rem;
-  transition: 0.2s;
-}
-.paginador button:disabled {
-  background: #ccc;
-  color: #444;
-  cursor: not-allowed;
-}
-.paginador span {
-  font-weight: bold;
+  transition: all 0.25s ease;
 }
 
-/* MODAL editar */
+.paginador button:hover { background: #0C223F; }
+.paginador button:disabled { background: #ccc; color: #444; cursor: not-allowed; }
+.paginador span { font-weight: bold; color: #0C223F; }
+
+/* === MODAL DE EDICIÓN - RESPONSVIE MEJORADO === */
 .modal-editar-backdrop {
   position: fixed;
-  z-index: 950;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(10,35,50,0.16);
+  inset: 0;
+  z-index: 999;
+  background: rgba(0, 0, 0, 0.45);
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+  padding: 20px;
+  overflow-y: auto; /* scroll si el modal es alto */
 }
+
+/* Contenedor principal del modal: layout adaptable */
 .modal-editar-card {
   background: #fff;
   border-radius: 16px;
-  max-width: 430px;
-  width: 96vw;
-  min-width: 270px;
-  padding: 2.2rem 1.7rem 2.1rem 1.7rem;
-  box-shadow: 0 14px 34px rgba(17, 47,105 ,.16);
-  text-align: left;
+  width: min(1100px, 95vw);
+  max-width: 1100px;
+  max-height: calc(100vh - 64px); /* deja espacio para el viewport */
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  padding: 1.25rem;
   position: relative;
-  animation: modalShow .21s;
-}
-@keyframes modalShow {
-  from { opacity: 0; transform: translateY(28px) scale(.97);}
-  to { opacity: 1; transform: none;}
+  display: grid;
+  grid-template-columns: 360px 1fr; /* imagen | formulario */
+  gap: 1.25rem;
+  box-sizing: border-box;
+  animation: modalShow 0.28s ease-out both;
 }
 
+/* Si usas modal sin imagen, oculta la columna por CSS dinámico (ej. añadir clase .no-imagen) */
+.modal-editar-card.no-imagen {
+  grid-template-columns: 1fr;
+}
+
+/* Imagen / preview */
+.modal-editar-imagen {
+  width: 100%;
+  height: 100%;
+  max-height: calc(100vh - 220px);
+  object-fit: contain;
+  border-radius: 10px;
+  background: #f9fbfd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+  box-sizing: border-box;
+}
+
+/* Área que contiene el formulario y botones, con scroll interno si hace falta */
+.modal-editar-body {
+  overflow-y: auto;
+  max-height: calc(100vh - 220px);
+  padding-right: 4px; /* espacio para scrollbar */
+}
+
+/* Botón volver/cerrar (posicionado dentro del modal) */
 .modal-editar-volver {
   position: absolute;
-  top: 14px;
-  left: 18px;
+  top: 12px;
+  left: 12px;
   border: none;
   background: #f5f5f7;
   border-radius: 50%;
   cursor: pointer;
-  font-size: 1.25rem;
+  font-size: 1.15rem;
   color: #176bbe;
-  transition: 0.15s, color 0.16s;
+  width: 38px;
+  height: 38px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.15s, background 0.15s;
+  z-index: 2;
+}
+.modal-editar-volver:hover {
+  transform: scale(1.03);
+  background: #eef7ff;
+  color: #0C223F;
 }
 
-.modal-editar-titulo {
-  font-size: 1.3rem;
-  font-weight: 700;
-  margin-bottom: 10px;
-  color: #19385c;
+/* Formulario: mantener columnas internas, pero responsivo */
+.form-editar-producto {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  align-items: start;
+  margin-top: 6px;
 }
 
-.modal-editar-input, .modal-editar-lectura {
-  width: 100%;
-  padding: 8px 10px;
-  border-radius: 8px;
-  border: 1px solid #e5e7eb;
-  margin-bottom: 12px;
-  font-size: 1rem;
+/* Forzar campos a ocupar fila completa cuando se necesite */
+.form-editar-producto .full {
+  grid-column: 1 / -1;
 }
-.modal-editar-guardar {
-  width: 100%;
-  padding: 10px 0;
+
+/* Etiquetas */
+.form-editar-producto label {
+  font-weight: 600;
+  color: #0C223F;
+  font-size: 0.9rem;
+}
+
+/* Inputs, select y textarea */
+.form-editar-producto input,
+.form-editar-producto select,
+.form-editar-producto textarea {
+  border: 1px solid #cfd6e0;
   border-radius: 8px;
-  background: #e2b100;
-  color: #fff;
-  font-weight: bold;
-  border: none;
+  padding: 9px 10px;
+  font-size: 0.95rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.form-editar-producto input:focus,
+.form-editar-producto select:focus,
+.form-editar-producto textarea:focus {
+  border-color: #176bbe;
+  box-shadow: 0 0 0 3px rgba(23, 107, 190, 0.12);
+  outline: none;
+}
+
+/* Botones de acción en columna al final */
+.modal-editar-acciones {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+  margin-top: 12px;
+  flex-wrap: wrap;
+}
+.modal-editar-acciones .btn {
+  min-width: 120px;
+  padding: 9px 14px;
+  border-radius: 8px;
   cursor: pointer;
-  font-size: 1rem;
-  margin-top: 18px;
+  border: none;
+  font-weight: 700;
 }
-.modal-editar-guardar:hover {
-  background: #19385c;
+
+/* Guardar / cancelar ejemplos */
+.modal-editar-acciones .btn-guardar {
+  background: #d4a017;
+  color: #fff;
 }
-.modal-editar-imagen {
-  width: 72px;
-  height: 72px;
-  object-fit: cover;
-  display: block;
-  margin: 0 auto 14px auto;
-  border-radius: 9px;
+.modal-editar-acciones .btn-cancelar {
+  background: #fff;
+  color: #176bbe;
+  border: 1px solid #e5e7eb;
+}
+
+/* Animación */
+@keyframes modalShow {
+  from { opacity: 0; transform: translateY(16px) scale(0.99); }
+  to { opacity: 1; transform: none; }
+}
+
+/* --------------- BREAKPOINTS --------------- */
+
+/* Desktop mediano -> ajustar columnas */
+@media (max-width: 1024px) {
+  .modal-editar-card {
+    grid-template-columns: 300px 1fr;
+    padding: 1rem;
+    width: min(920px, 94vw);
+    gap: 1rem;
+  }
+  .modal-editar-body { max-height: calc(100vh - 200px); }
+  .inventario-cards-grid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1.4rem;
+  }
+  .inventario-card {
+    padding: 26px 18px;
+  }
+  .modal-editar-imagen {
+    max-height: 260px;
+  }
+}
+
+/* Tablets y pantallas pequeñas: convertir a 1 columna (imagen arriba, formulario abajo) */
+@media (max-width: 768px) {
+  .modal-editar-card {
+    grid-template-columns: 1fr;
+    width: min(760px, 96vw);
+    padding: 0.9rem;
+    max-height: calc(100vh - 48px);
+    border-radius: 12px;
+  }
+  .modal-editar-imagen {
+    max-height: 220px;
+    padding: 10px;
+    margin-bottom: 6px;
+  }
+  .form-editar-producto {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  .modal-editar-acciones {
+    justify-content: center;
+  }
+  .modal-editar-volver {
+    top: 10px;
+    left: 10px;
+  }
+
+  .inventario-card {
+    padding: 24px 16px;
+  }
+  .inventario-cards-grid {
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 1.2rem;
+  }
+  .producto-card {
+    max-width: 260px;
+    min-height: 300px;
+  }
+}
+
+/* Móviles pequeños: optimizar padding, hacer botones full-width */
+@media (max-width: 480px) {
+  .modal-editar-card {
+    width: 96vw;
+    padding: 0.75rem;
+    max-height: calc(100vh - 32px);
+  }
+  .modal-editar-imagen { max-height: 180px; }
+  .form-editar-producto input,
+  .form-editar-producto select,
+  .form-editar-producto textarea { padding: 10px; font-size: 0.92rem; }
+  .modal-editar-acciones {
+    flex-direction: column-reverse;
+    gap: 8px;
+    align-items: stretch;
+  }
+  .modal-editar-acciones .btn { width: 100%; min-width: 0; }
+  .modal-editar-volver { width: 36px; height: 36px; }
+
+  .inventario-cards-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  .producto-card {
+    padding: 1rem;
+    border-radius: 12px;
+    min-height: auto;
+  }
+  .producto-imagen {
+    max-width: 120px;
+  }
+}
+
+/* Muy pequeño: asegurar legibilidad */
+@media (max-width: 360px) {
+  .modal-editar-card { padding: 0.6rem; border-radius: 10px; }
+  .modal-editar-imagen { max-height: 140px; }
+  .form-editar-producto { gap: 8px; }
+  .producto-imagen { max-width: 100px; }
+  .titulo-inventario { font-size: 1.15rem; }
+}
+
+/* === ULTRA PEQUEÑAS (≤320px) === */
+@media (max-width: 320px) {
+  .modal-editar-card {
+    width: 98vw;
+    padding: 0.5rem;
+    border-radius: 8px;
+    grid-template-columns: 1fr;
+    max-height: calc(100vh - 20px);
+  }
+
+  .modal-editar-imagen {
+    max-height: 120px;
+    padding: 6px;
+  }
+
+  .form-editar-producto {
+    gap: 6px;
+  }
+
+  .form-editar-producto label {
+    font-size: 0.8rem;
+  }
+
+  .form-editar-producto input,
+  .form-editar-producto select,
+  .form-editar-producto textarea {
+    font-size: 0.8rem;
+    padding: 8px;
+  }
+
+  .modal-editar-acciones {
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .modal-editar-acciones .btn {
+    width: 100%;
+    font-size: 0.85rem;
+    padding: 8px;
+  }
+
+  .modal-editar-volver {
+    top: 8px;
+    left: 8px;
+    width: 30px;
+    height: 30px;
+    font-size: 1rem;
+  }
 }

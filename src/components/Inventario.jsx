@@ -144,74 +144,76 @@ export default function Inventario() {
         primary={modalMsg.primary}
       />
 
-      {productoEditando && (
-        <SimpleModal
-          show={true}
-          title="Editar Producto"
-          message={
-            <form
-              onSubmit={e => {
-                e.preventDefault();
-                handleGuardarCambios();
-              }}
-            >
-              <label>Nombre:</label>
-              <input
-                type="text"
-                value={formData.Nombre}
-                onChange={e => setFormData({ ...formData, Nombre: e.target.value })}
-                required
-              />
-              <label>Descripción:</label>
-              <textarea
-                value={formData.Descripcion}
-                onChange={e => setFormData({ ...formData, Descripcion: e.target.value })}
-                required
-              />
-              <label>Imagen (URL):</label>
-              <input
-                type="text"
-                value={formData.URLImagen}
-                onChange={e => setFormData({ ...formData, URLImagen: e.target.value })}
-                required
-              />
-              <label>Precio:</label>
-              <input
-                type="number"
-                value={formData.PrecioUnitario}
-                onChange={e => setFormData({ ...formData, PrecioUnitario: e.target.value })}
-                required
-              />
-              <label>Categoría (ID):</label>
-              <input
-                type="number"
-                value={formData.IdCategoria}
-                onChange={e => setFormData({ ...formData, IdCategoria: e.target.value })}
-                required
-              />
-              <label>Sucursal (ID):</label>
-              <input
-                type="number"
-                value={formData.IdSucursal}
-                onChange={e => setFormData({ ...formData, IdSucursal: e.target.value })}
-                required
-              />
-              <label>Activo:</label>
-              <select
-                value={formData.Activo}
-                onChange={e => setFormData({ ...formData, Activo: Number(e.target.value) })}
-              >
-                <option value={1}>Sí</option>
-                <option value={0}>No</option>
-              </select>
-              <button type="submit" className="btn-guardar">
-                Guardar Cambios
-              </button>
-            </form>
-          }
-          onClose={handleCerrarModal}
+     {productoEditando && (
+  <SimpleModal
+    show={true}
+    title="Editar Producto"
+    message={
+      <form
+        className="form-editar-producto"
+        onSubmit={e => {
+          e.preventDefault();
+          handleGuardarCambios();
+        }}
+      >
+        <label>Nombre:</label>
+        <input
+          type="text"
+          value={formData.Nombre}
+          onChange={e => setFormData({ ...formData, Nombre: e.target.value })}
+          required
         />
-      )}
+        <label>Descripción:</label>
+        <textarea
+          value={formData.Descripcion}
+          onChange={e => setFormData({ ...formData, Descripcion: e.target.value })}
+          required
+        />
+        <label>Imagen (URL):</label>
+        <input
+          type="text"
+          value={formData.URLImagen}
+          onChange={e => setFormData({ ...formData, URLImagen: e.target.value })}
+          required
+        />
+        <label>Precio:</label>
+        <input
+          type="number"
+          value={formData.PrecioUnitario}
+          onChange={e => setFormData({ ...formData, PrecioUnitario: e.target.value })}
+          required
+        />
+        <label>Categoría (ID):</label>
+        <input
+          type="number"
+          value={formData.IdCategoria}
+          onChange={e => setFormData({ ...formData, IdCategoria: e.target.value })}
+          required
+        />
+        <label>Sucursal (ID):</label>
+        <input
+          type="number"
+          value={formData.IdSucursal}
+          onChange={e => setFormData({ ...formData, IdSucursal: e.target.value })}
+          required
+        />
+        <label>Activo:</label>
+        <select
+          value={formData.Activo}
+          onChange={e => setFormData({ ...formData, Activo: Number(e.target.value) })}
+        >
+          <option value={1}>Sí</option>
+          <option value={0}>No</option>
+        </select>
+
+        <button type="submit" className="btn-guardar">
+          Guardar Cambios
+        </button>
+      </form>
+    }
+    onClose={handleCerrarModal}
+  />
+)}
     </div>
   );
 }
