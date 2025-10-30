@@ -12,25 +12,36 @@ import Dashboard from "./components/Dashboard";
 import AgregarProducto from "./components/AgregarProducto";
 import Inventario from "./components/Inventario";
 import Users from "./components/Users";
+import Carrito from "./components/Carrito";
 import "./App.css";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 function AppContent() {
   const location = useLocation();
   const [busqueda, setBusqueda] = useState("");
   const hideLayout = location.pathname === "/login" || location.pathname.startsWith("/dashboard");
+  const [carritoAbierto, setCarritoAbierto] = useState(false); 
 
   return (
     <div className="app">
-      {!hideLayout && <Encabezado onBuscar={setBusqueda} />}
+      {!hideLayout && (
+        <Carrito abierto={carritoAbierto} onClose={() => setCarritoAbierto(false)} />
+      )}
+      {!hideLayout && (
+        <Encabezado
+          onBuscar={setBusqueda}
+          abrirCarrito={() => setCarritoAbierto(true)} 
+        />
+      )}
       <div className="contenido-principal">
         {!hideLayout && <MenuLateral />}
         <div className="contenido-scroll" style={{ flex: 1 }}>
           <main>
             <Routes>
               <Route path="/login" element={<Login />} />
-              <Route path="/dashboard" element={<Dashboard />} />
-              <Route path="/dashboard/add-product" element={<AgregarProducto />} />
-              <Route path="/dashboard/inventory" element={<Inventario />} />
+              <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
+              <Route path="/dashboard/add-product" element={<ProtectedRoute><AgregarProducto /></ProtectedRoute>} />
+              <Route path="/dashboard/inventory" element={<ProtectedRoute><AgregarProducto /></ProtectedRoute>} />
               <Route path="/dashboard/users" element={<Users />} />
               <Route path="/" element={<Inicio busqueda={busqueda} />} />
               <Route path="/servicios" element={<Servicios />} />

@@ -1,0 +1,22 @@
+.sm-backdrop{
+  position: fixed; inset: 0;
+  display:flex; align-items:center; justify-content:center;
+  background: rgba(0,0,0,0.35); z-index:99999;
+}
+.sm-card{
+  width: min(560px, 92vw);
+  background:#fff; border-radius:10px; padding:18px;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.18); position:relative;
+  font-family: sans-serif;
+}
+.sm-close{
+  position:absolute; top:10px; right:12px; border:none; background:transparent;
+  font-size:20px; cursor:pointer;
+}
+.sm-title{ margin:0 0 10px 0; color:#0C223F; font-size:1.05rem; }
+.sm-body{ color:#334; margin-bottom:14px; line-height:1.4; }
+.sm-actions{ display:flex; gap:10px; justify-content:flex-end; }
+.sm-btn{ padding:8px 14px; border-radius:8px; border:none; cursor:pointer; font-weight:600; }
+.sm-btn-primary{ background:#d4a017; color:#fff; }
+.sm-btn-secondary{ background:#f2f2f2; color:#333; }
+@media(max-width:420px){ .sm-card{ padding:14px } .sm-btn{ padding:8px 10px } }

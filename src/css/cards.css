@@ -141,8 +141,8 @@
   color: #d41f48;
 }
 .modal-content img {
-  width: 120px;
-  height: 120px;
+  width: 250px;
+  height: 250px;
   object-fit: cover;
   border-radius: 8px;
   margin-bottom: 8px;

@@ -107,6 +107,15 @@
   font-weight: bold;
   transition: color 0.2s;
 }
+.btn-carrito {
+  background-color:#c5930f ;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+}
 
 .menu-link:hover {
   color: #5bb3fc;

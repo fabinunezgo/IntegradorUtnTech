@@ -1,0 +1,208 @@
+.carrito-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 20000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(12, 34, 63, 0.7);
+  padding: 28px;
+}
+
+.carrito-modal {
+  width: min(1100px, 96vw);
+  max-height: 92vh;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 20px 60px rgba(3, 18, 40, 0.28);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+}
+
+/* header */
+.carrito-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 28px;
+  border-bottom: 1px solid #f0f3f6;
+  background: linear-gradient(90deg, rgba(212, 160, 23, 0.03), transparent);
+}
+
+.carrito-titulo {
+  margin: 0;
+  color: #0C223F;
+  font-size: 1.25rem;
+  font-weight: 800;
+}
+
+.carrito-sub {
+  margin: 4px 0 0 0;
+  color: #5b6b74;
+  font-size: 0.95rem;
+}
+
+.carrito-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.carrito-cerrar {
+  background: #d4a017;
+  color: #fff;
+  border: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(212, 160, 23, 0.18);
+}
+
+.carrito-cerrar:hover {
+  transform: translateY(-2px);
+}
+
+/* body with scroll */
+.carrito-body {
+  padding: 18px 28px;
+  overflow-y: auto;
+  flex: 1 1 auto;
+}
+
+/* grid of product cards */
+.carrito-cards-lista {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 18px;
+  align-items: start;
+}
+
+/* wrapper to visually separate each TarjetaProducto inside cart */
+.carrito-card-wrapper .producto-card {
+  height: auto;
+  width: 100%;
+  min-height: 250px;
+  display: flex;
+  flex-direction: column;
+  padding: 14px;
+  border-radius: 10px;
+  box-shadow: 0 6px 20px rgba(10, 30, 60, 0.04);
+  border: 1px solid #f1f5f9;
+}
+
+/* make image inside product card a bit bigger in cart */
+.carrito-card-wrapper .producto-imagen {
+  width: 120px;
+  height: 120px;
+  margin: 0.8rem auto;
+  border-radius: 8px;
+  object-fit: contain;
+}
+
+/* footer fixed inside modal */
+.carrito-footer {
+  padding: 16px 28px;
+  border-top: 1px solid #f0f3f6;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.6), #fff);
+}
+
+/* total block */
+.carrito-total {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  color: #243244;
+  font-weight: 700;
+}
+
+.carrito-total-amount {
+  color: #0C223F;
+  font-size: 1.15rem;
+}
+
+/* buttons */
+.btn-primary,
+.btn-secondary {
+  padding: 10px 18px;
+  border-radius: 10px;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  min-width: 120px;
+}
+
+.btn-primary {
+  background: #d4a017;
+  color: #fff;
+  box-shadow: 0 8px 20px rgba(212, 160, 23, 0.16);
+}
+
+.btn-primary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.btn-secondary {
+  background: #f6f8fa;
+  color: #334;
+  border: 1px solid #e8eef5;
+}
+
+/* empty state */
+.carrito-vacio {
+  padding: 36px;
+  text-align: center;
+  color: #55666f;
+  font-size: 1.05rem;
+}
+
+/* scrollbar styling for modal body */
+.carrito-body::-webkit-scrollbar {
+  height: 10px;
+  width: 10px;
+}
+
+.carrito-body::-webkit-scrollbar-thumb {
+  background: rgba(17, 47, 105, 0.12);
+  border-radius: 8px;
+}
+
+/* responsive */
+@media (max-width: 800px) {
+  .carrito-header {
+    padding: 14px;
+  }
+
+  .carrito-body {
+    padding: 12px;
+  }
+
+  .carrito-footer {
+    padding: 12px;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .carrito-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 8px;
+    justify-content: flex-end;
+  }
+
+  .carrito-total {
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+  }
+}

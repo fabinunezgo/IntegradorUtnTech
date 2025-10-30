@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import { FaEdit, FaTrash, FaShoppingCart, FaTimes } from "react-icons/fa";
 import "../css/cards.css";
+import { addToCart } from "../js/addtocart";
+
 
 export default function TarjetaProducto({ producto, onEditar, onEliminar, modoInventario }) {
   const [modal, setModal] = useState(false);
+ 
 
   return (
     <>
@@ -32,11 +35,12 @@ export default function TarjetaProducto({ producto, onEditar, onEliminar, modoIn
             </button>
           </div>
         ) : (
-          <button className="btn-comprar" onClick={e => { e.stopPropagation(); alert("Comprar producto"); }}>
+          <button className="btn-comprar" onClick={e => addToCart(producto)}>
             <FaShoppingCart className="icono-carrito" /> Comprar
           </button>
         )}
       </div>
+
 
       {modal && (
         <div className="modal-overlay" onClick={() => setModal(false)}>
