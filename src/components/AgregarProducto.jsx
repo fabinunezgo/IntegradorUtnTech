@@ -1,7 +1,9 @@
+// ...existing code...
 import React, { useState } from "react";
 import { FaArrowLeft } from "react-icons/fa";
 import "../css/agregarProducto.css";
 import { createProduct } from "../js/api";
+import SimpleModal from "./modalemensaje"; // <-- añadido
 
 const categoriasPorSucursal = {
   7: [{ nombre: "Computadoras y Tablets", id: 2 }],
@@ -14,13 +16,9 @@ const categoriasPorSucursal = {
 
 export default function AgregarProducto() {
   const usuario = JSON.parse(sessionStorage.getItem("usuario") || "{}");
-  console.log("Usuario desde sessionStorage:", usuario);
 
   const idSucursal = usuario.IdSucursal || 0;
-  console.log("idSucursal seleccionado:", idSucursal);
-
   const categoriasPermitidas = categoriasPorSucursal[idSucursal] || [];
-  console.log("categoriasPermitidas:", categoriasPermitidas);
 
   const [nombre, setNombre] = useState("");
   const [categoria, setCategoria] = useState(categoriasPermitidas[0]?.nombre || "");
@@ -28,11 +26,28 @@ export default function AgregarProducto() {
   const [precio, setPrecio] = useState("");
   const [stock, setStock] = useState("");
   const [URLImagen, setUrlImagen] = useState("");
+
+  // estado para el modal de mensaje
+  const [modalInfo, setModalInfo] = useState({
+    show: false,
+    title: "",
+    message: "",
+    onConfirm: null, // función a ejecutar al aceptar
+  });
+
+  const limpiarFormulario = () => {
+    setNombre("");
+    setCategoria(categoriasPermitidas[0]?.nombre || "");
+    setDescripcion("");
+    setPrecio("");
+    setStock("");
+    setUrlImagen("");
+  };
+
   const handleGuardar = async (e) => {
     e.preventDefault();
 
     const catObj = categoriasPermitidas.find((c) => c.nombre === categoria) || {};
-    console.log("catObj seleccionado:", catObj);
 
     const nuevoProducto = {
       nombre,
@@ -44,25 +59,34 @@ export default function AgregarProducto() {
       activo: 1
     };
 
-    console.log("Objeto que se enviará a createProduct:", nuevoProducto);
-
     try {
       const res = await createProduct(nuevoProducto);
-      console.log("Respuesta de createProduct:", res);
       if (res.success) {
-        alert("Producto guardado exitosamente");
-        setNombre("");
-        setCategoria(categoriasPermitidas[0]?.nombre || "");
-        setDescripcion("");
-        setPrecio("");
-        setStock("");
+        // mostrar modal en vez de alert; al aceptar limpiar formulario (mismo efecto que antes)
+        setModalInfo({
+          show: true,
+          title: "Producto guardado",
+          message: "El producto se guardó exitosamente.",
+          onConfirm: () => {
+            limpiarFormulario();
+            // si antes hacías algo extra (redirect, recarga), agrégalo aquí
+          }
+        });
       } else {
-        console.error("Error en respuesta de API:", res);
-        alert("Error en la respuesta: " + (res.message || "Error al guardar producto"));
+        setModalInfo({
+          show: true,
+          title: "Error",
+          message: "Error al guardar: " + (res.message || "respuesta inválida"),
+          onConfirm: null
+        });
       }
     } catch (error) {
-      console.error("Error en el catch:", error);
-      alert("Error al guardar el producto");
+      setModalInfo({
+        show: true,
+        title: "Error",
+        message: "Error al guardar el producto.",
+        onConfirm: null
+      });
     }
   };
 
@@ -129,10 +153,19 @@ export default function AgregarProducto() {
             required
           />
 
-
           <button type="submit" className="btn-guardar">Guardar Producto</button>
         </form>
       </div>
+
+      {/* Modal de mensaje: botón "Aceptar" ejecuta onConfirm si existe y cierra el modal */}
+      <SimpleModal
+        show={modalInfo.show}
+        title={modalInfo.title}
+        message={modalInfo.message}
+        onClose={() => setModalInfo({ show: false, title: "", message: "", onConfirm: null })}
+        primary={modalInfo.onConfirm ? { label: "Aceptar", onClick: modalInfo.onConfirm } : null}
+      />
     </div>
   );
 }
+// ...existing code...

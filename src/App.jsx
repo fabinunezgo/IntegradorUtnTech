@@ -41,7 +41,7 @@ function AppContent() {
               <Route path="/login" element={<Login />} />
               <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
               <Route path="/dashboard/add-product" element={<ProtectedRoute><AgregarProducto /></ProtectedRoute>} />
-              <Route path="/dashboard/inventory" element={<ProtectedRoute><AgregarProducto /></ProtectedRoute>} />
+              <Route path="/dashboard/inventory" element={<ProtectedRoute><Inventario/></ProtectedRoute>} />
               <Route path="/dashboard/users" element={<Users />} />
               <Route path="/" element={<Inicio busqueda={busqueda} />} />
               <Route path="/servicios" element={<Servicios />} />

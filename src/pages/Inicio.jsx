@@ -69,7 +69,7 @@ export default function Inicio({ busqueda }) {
     setPagina(1);
   }, [nombreCategoria, busqueda]);
 
-  // Products for current page
+
   const totalPaginas = Math.ceil(productosFiltrados.length / productosPorPagina);
   const indiceInicio = (pagina - 1) * productosPorPagina;
   const productosPaginados = productosFiltrados.slice(indiceInicio, indiceInicio + productosPorPagina);

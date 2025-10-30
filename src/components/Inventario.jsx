@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { FaArrowLeft } from "react-icons/fa";
 import TarjetaProducto from "./TarjetaProducto";
 import Footer from "./Footer";
+import SimpleModal from "./modalemensaje";
 import "../css/inicio.css";
 import "../css/agregarProducto.css";
 import "../css/cards.css";
@@ -24,7 +25,8 @@ export default function Inventario() {
   });
   const [pagina, setPagina] = useState(1);
 
-  // Solo productos de la sucursal activa
+  const [modalMsg, setModalMsg] = useState({ show: false, title: "", message: "", primary: null });
+
   const fetchProductos = async () => {
     try {
       const res = await getProducts();
@@ -34,7 +36,7 @@ export default function Inventario() {
       const filtrados = todos.filter(p => Number(p.IdSucursal) === idSucursal);
       setProductos(filtrados);
     } catch (error) {
-      console.error("Error al obtener productos:", error);
+      setModalMsg({ show: true, title: "Error", message: "Error al obtener productos", primary: null });
     }
   };
 
@@ -58,16 +60,24 @@ export default function Inventario() {
   };
 
   const handleEliminar = async (producto) => {
-    const confirmacion = window.confirm(`¿Eliminar "${producto.Nombre}"?`);
-    if (!confirmacion) return;
-    try {
-      await deleteProduct(producto.IdProducto);
-      const nuevos = productos.filter(p => p.IdProducto !== producto.IdProducto);
-      setProductos(nuevos);
-      alert("Producto eliminado correctamente");
-    } catch (error) {
-      alert("No se pudo eliminar el producto");
-    }
+    setModalMsg({
+      show: true,
+      title: "Eliminar producto",
+      message: `¿Está seguro de que desea eliminar el producto "${producto.Nombre}"?.`,
+      primary: {
+        label: "Eliminar",
+        onClick: async () => {
+          try {
+            await deleteProduct(producto.IdProducto);
+            const nuevos = productos.filter(p => p.IdProducto !== producto.IdProducto);
+            setProductos(nuevos);
+            setModalMsg({ show: true, title: "Éxito", message: "Producto eliminado correctamente", primary: null });
+          } catch {
+            setModalMsg({ show: true, title: "Error", message: "No se pudo eliminar el producto", primary: null });
+          }
+        }
+      }
+    });
   };
 
   const handleCerrarModal = () => setProductoEditando(null);
@@ -86,9 +96,9 @@ export default function Inventario() {
       await updateProduct(productoEditando.IdProducto, productoActualizado);
       await fetchProductos();
       setProductoEditando(null);
-      alert("Producto actualizado correctamente");
+      setModalMsg({ show: true, title: "Éxito", message: "Producto actualizado correctamente", primary: null });
     } catch {
-      alert("No se pudo actualizar el producto");
+      setModalMsg({ show: true, title: "Error", message: "No se pudo actualizar el producto", primary: null });
     }
   };
 
@@ -126,14 +136,19 @@ export default function Inventario() {
       </div>
       <Footer />
 
+      <SimpleModal
+        show={modalMsg.show}
+        title={modalMsg.title}
+        message={modalMsg.message}
+        onClose={() => setModalMsg({ show: false, title: "", message: "", primary: null })}
+        primary={modalMsg.primary}
+      />
+
       {productoEditando && (
-        <div className="modal-editar-backdrop">
-          <div className="agregar-producto-card">
-            <button className="btn-volver" onClick={handleCerrarModal}>
-              <FaArrowLeft />
-            </button>
-            <h2 className="titulo-agregar">Editar Producto</h2>
-            <div className="linea-amarilla-agregar"></div>
+        <SimpleModal
+          show={true}
+          title="Editar Producto"
+          message={
             <form
               onSubmit={e => {
                 e.preventDefault();
@@ -147,14 +162,12 @@ export default function Inventario() {
                 onChange={e => setFormData({ ...formData, Nombre: e.target.value })}
                 required
               />
-
               <label>Descripción:</label>
               <textarea
                 value={formData.Descripcion}
                 onChange={e => setFormData({ ...formData, Descripcion: e.target.value })}
                 required
               />
-
               <label>Imagen (URL):</label>
               <input
                 type="text"
@@ -162,7 +175,6 @@ export default function Inventario() {
                 onChange={e => setFormData({ ...formData, URLImagen: e.target.value })}
                 required
               />
-
               <label>Precio:</label>
               <input
                 type="number"
@@ -170,7 +182,6 @@ export default function Inventario() {
                 onChange={e => setFormData({ ...formData, PrecioUnitario: e.target.value })}
                 required
               />
-
               <label>Categoría (ID):</label>
               <input
                 type="number"
@@ -178,7 +189,6 @@ export default function Inventario() {
                 onChange={e => setFormData({ ...formData, IdCategoria: e.target.value })}
                 required
               />
-
               <label>Sucursal (ID):</label>
               <input
                 type="number"
@@ -186,7 +196,6 @@ export default function Inventario() {
                 onChange={e => setFormData({ ...formData, IdSucursal: e.target.value })}
                 required
               />
-
               <label>Activo:</label>
               <select
                 value={formData.Activo}
@@ -195,13 +204,13 @@ export default function Inventario() {
                 <option value={1}>Sí</option>
                 <option value={0}>No</option>
               </select>
-
               <button type="submit" className="btn-guardar">
                 Guardar Cambios
               </button>
             </form>
-          </div>
-        </div>
+          }
+          onClose={handleCerrarModal}
+        />
       )}
     </div>
   );

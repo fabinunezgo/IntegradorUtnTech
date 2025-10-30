@@ -1,14 +1,16 @@
+
+/* Tarjeta producto: flexible para responsive (no tamaños fijos que oculten elementos) */
 .producto-card {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   background: #fff;
   border-radius: 16px;
   box-shadow: 0 4px 24px rgba(0,105,158,0.07);
-  padding: 1.5rem 1.2rem;
+  padding: 1.2rem;
   transition: box-shadow 0.2s, transform 0.2s;
-  height: 320px;
-  width: 260px;
-  min-width: 260px;
-  max-width: 260px;
+  /* Flexible: ocupa 100% de la columna del grid pero mantiene una base cómoda */
+  width: 100%;
+  max-width: 260px;     /* ancho deseado en desktop */
+  flex: 0 1 260px;      /* útil si .cards-grid usa flex */
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -16,24 +18,27 @@
   gap: 0.7rem;
   border: 1px solid #e5e7eb;
   box-sizing: border-box;
+  min-height: 220px;    /* mantiene consistencia visual */
 }
 
+/* Grid de filas (opcional) */
 .cards-grid-filas {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 2.2rem;
   max-width: 1500px;
   margin: 0 auto;
   padding: 0 30px;
 }
 
-
+/* Hover */
 .producto-card:hover {
   box-shadow: 0 8px 32px rgba(0,105,158,0.13);
   transform: scale(1.03);
   border-color: #163d86;
 }
 
+/* Título: permitir wrap en móviles para evitar recortes */
 .producto-card h3 {
   font-size: 1.12rem;
   font-weight: 700;
@@ -42,11 +47,12 @@
   margin-top: 0.1rem;
   line-height: 1.18;
   text-align: left;
-  white-space: nowrap;
+  white-space: normal; /* permitir salto de línea en pantallas pequeñas */
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
+/* Texto y tags */
 .producto-card p,
 .cat-tag {
   font-size: 0.98rem;
@@ -66,14 +72,17 @@
   align-self: flex-start;
 }
 
+/* Imagen de card: tamaño relativo para columnas estrechas */
 .producto-imagen {
   width: 72px;
   height: 72px;
   object-fit: cover;
-  margin: 0 auto 1.1rem auto; /* Antes: 0.5rem, ahora 1.1rem o más */
+  margin: 0 auto 1.1rem auto;
   border-radius: 8px;
+  max-width: 45%;
 }
 
+/* Botón comprar y iconos */
 .btn-comprar {
   margin-top: auto;
   padding: 8px;
@@ -100,7 +109,7 @@
   color: #176bbe;
 }
 
-/* MODAL DETALLE */
+/* MODAL DETALLE: más amplio y responsive */
 .modal-overlay {
   position: fixed;
   z-index: 900;
@@ -109,23 +118,31 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 20px;
 }
 .modal-content {
   background: #fff;
   border-radius: 18px;
-  max-width: 430px;
+  max-width: 720px;      /* más ancho para mejor visual */
   width: 96vw;
   min-width: 270px;
-  padding: 2.4rem 1.7rem 2.1rem 1.7rem;
+  padding: 2rem;
   box-shadow: 0 14px 42px rgba(17, 47,105 ,.20);
   position: relative;
-  text-align: left;
+  text-align: center;
   animation: modalShow .2s;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
+
+/* Keyframes */
 @keyframes modalShow {
-  from { opacity: 0; transform: translateY(38px) scale(.97);}
-  to { opacity: 1; transform: none;}
+  from { opacity: 0; transform: translateY(38px) scale(.97); }
+  to { opacity: 1; transform: none; }
 }
+
+/* Close */
 .modal-close {
   position: absolute;
   top: 14px;
@@ -137,21 +154,22 @@
   color: #176bbe;
   transition: color 0.18s;
 }
-.modal-close:hover {
-  color: #d41f48;
-}
+.modal-close:hover { color: #d41f48; }
+
+/* Imagen modal: grande pero responsive */
 .modal-content img {
-  width: 250px;
-  height: 250px;
-  object-fit: cover;
+  width: min(320px, 86vw);
+  height: auto;
+  max-height: 60vh;
+  object-fit: contain;
   border-radius: 8px;
-  margin-bottom: 8px;
+  margin: 0 auto;
   display: block;
-  margin-left: auto;
-  margin-right: auto;
 }
+
+/* Headings y texto dentro del modal */
 .modal-content h2 {
-  margin: 12px 0 10px 0;
+  margin: 6px 0 4px 0;
   color: #0C223F;
 }
 .modal-content h3 {
@@ -162,10 +180,272 @@
   color: #181818;
   font-size: 1rem;
   margin-bottom: 7px;
+  text-align: center;
+  max-width: 680px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
+/* Botones de acción */
 .botones-accion {
   display: flex;
-  gap: 30px;
+  gap: 20px;
   justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* Ajustes responsivos */
+@media (max-width: 1200px) {
+  .producto-card { max-width: 240px; flex: 0 1 240px; min-height: 210px; }
+  .modal-content { max-width: 640px; padding: 1.8rem; }
+  .modal-content img { width: min(300px, 78vw); }
+}
+
+@media (max-width: 900px) {
+  .producto-card { max-width: 220px; flex: 0 1 220px; min-height: 200px; padding: 1rem; }
+  .producto-imagen { width: 64px; height: 64px; max-width: 48%; }
+  .modal-content { max-width: 560px; padding: 1.4rem; text-align: center; }
+}
+
+@media (max-width: 600px) {
+  /* en pantallas pequeñas las tarjetas ocuparán 100% de la columna del grid */
+  .producto-card { max-width: 100%; flex: 1 1 100%; min-height: auto; }
+  .producto-card h3 { font-size: 1.05rem; }
+  .producto-imagen { width: 80px; height: 80px; max-width: 46%; }
+  .modal-content { max-width: 520px; padding: 1.2rem; gap: 8px; }
+  .modal-content img { width: 220px; max-height: 46vh; }
+}
+
+@media (max-width: 420px) {
+  .producto-card { padding: 0.9rem; gap: 0.6rem; }
+  .producto-imagen { width: 72px; height: 72px; max-width: 40%; }
+  .producto-card h3 { font-size: 1rem; }
+  .modal-content { padding: 1rem; width: 94vw; }
+  .modal-content img { width: 88vw; height: auto; max-height: 50vh; }
+}
+
+
+/* Tarjeta producto: flexible para responsive (no tamaños fijos que oculten elementos) */
+.producto-card {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(0,105,158,0.07);
+  padding: 1.2rem;
+  transition: box-shadow 0.2s, transform 0.2s;
+  /* Flexible: ocupa 100% de la columna del grid pero mantiene una base cómoda */
+  width: 100%;
+  max-width: 260px;     /* ancho deseado en desktop */
+  flex: 0 1 260px;      /* útil si .cards-grid usa flex */
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.7rem;
+  border: 1px solid #e5e7eb;
+  box-sizing: border-box;
+  min-height: 220px;    /* mantiene consistencia visual */
+}
+
+/* Grid de filas (opcional) */
+.cards-grid-filas {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2.2rem;
+  max-width: 1500px;
+  margin: 0 auto;
+  padding: 0 30px;
+}
+
+/* Hover */
+.producto-card:hover {
+  box-shadow: 0 8px 32px rgba(0,105,158,0.13);
+  transform: scale(1.03);
+  border-color: #163d86;
+}
+
+/* Título: permitir wrap en móviles para evitar recortes */
+.producto-card h3 {
+  font-size: 1.12rem;
+  font-weight: 700;
+  color: #0C223F;
+  margin-bottom: 0.15rem;
+  margin-top: 0.1rem;
+  line-height: 1.18;
+  text-align: left;
+  white-space: normal; /* permitir salto de línea en pantallas pequeñas */
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Texto y tags */
+.producto-card p,
+.cat-tag {
+  font-size: 0.98rem;
+  color: #181818; 
+  margin: 0 0 0.16rem 0;
+  line-height: 1.18;
+}
+
+.cat-tag {
+  background: #eef7ff;
+  color: #1560ae;
+  font-size: 0.97rem;
+  font-weight: 500;
+  border-radius: 8px;
+  padding: 2px 12px;
+  display: inline-block;
+  align-self: flex-start;
+}
+
+/* Imagen de card: tamaño relativo para columnas estrechas */
+.producto-imagen {
+  width: 72px;
+  height: 72px;
+  object-fit: cover;
+  margin: 0 auto 1.1rem auto;
+  border-radius: 8px;
+  max-width: 45%;
+}
+
+/* Botón comprar y iconos */
+.btn-comprar {
+  margin-top: auto;
+  padding: 8px;
+  background-color: #d4a017;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 0.97rem;
+  text-align: center;
+  transition: background-color 0.2s, transform 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+.btn-comprar:hover {
+  background-color: #0C223F;
+  transform: translateY(-2px);
+}
+.categoria-icono, .icono-carrito {
+  font-size: 1.6rem;
+  color: #176bbe;
+}
+
+/* MODAL DETALLE: más amplio y responsive */
+.modal-overlay {
+  position: fixed;
+  z-index: 900;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(5,24,35,0.38);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+.modal-content {
+  background: #fff;
+  border-radius: 18px;
+  max-width: 720px;      /* más ancho para mejor visual */
+  width: 96vw;
+  min-width: 270px;
+  padding: 2rem;
+  box-shadow: 0 14px 42px rgba(17, 47,105 ,.20);
+  position: relative;
+  text-align: center;
+  animation: modalShow .2s;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Keyframes */
+@keyframes modalShow {
+  from { opacity: 0; transform: translateY(38px) scale(.97); }
+  to { opacity: 1; transform: none; }
+}
+
+/* Close */
+.modal-close {
+  position: absolute;
+  top: 14px;
+  right: 16px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 1.7rem;
+  color: #176bbe;
+  transition: color 0.18s;
+}
+.modal-close:hover { color: #d41f48; }
+
+/* Imagen modal: grande pero responsive */
+.modal-content img {
+  width: min(320px, 86vw);
+  height: auto;
+  max-height: 60vh;
+  object-fit: contain;
+  border-radius: 8px;
+  margin: 0 auto;
+  display: block;
+}
+
+/* Headings y texto dentro del modal */
+.modal-content h2 {
+  margin: 6px 0 4px 0;
+  color: #0C223F;
+}
+.modal-content h3 {
+  font-weight: 500;
+  color: #277bbe;
+}
+.modal-content p {
+  color: #181818;
+  font-size: 1rem;
+  margin-bottom: 7px;
+  text-align: center;
+  max-width: 680px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Botones de acción */
+.botones-accion {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* Ajustes responsivos */
+@media (max-width: 1200px) {
+  .producto-card { max-width: 240px; flex: 0 1 240px; min-height: 210px; }
+  .modal-content { max-width: 640px; padding: 1.8rem; }
+  .modal-content img { width: min(300px, 78vw); }
+}
+
+@media (max-width: 900px) {
+  .producto-card { max-width: 220px; flex: 0 1 220px; min-height: 200px; padding: 1rem; }
+  .producto-imagen { width: 64px; height: 64px; max-width: 48%; }
+  .modal-content { max-width: 560px; padding: 1.4rem; text-align: center; }
+}
+
+@media (max-width: 600px) {
+  /* en pantallas pequeñas las tarjetas ocuparán 100% de la columna del grid */
+  .producto-card { max-width: 100%; flex: 1 1 100%; min-height: auto; }
+  .producto-card h3 { font-size: 1.05rem; }
+  .producto-imagen { width: 80px; height: 80px; max-width: 46%; }
+  .modal-content { max-width: 520px; padding: 1.2rem; gap: 8px; }
+  .modal-content img { width: 220px; max-height: 46vh; }
+}
+
+@media (max-width: 420px) {
+  .producto-card { padding: 0.9rem; gap: 0.6rem; }
+  .producto-imagen { width: 72px; height: 72px; max-width: 40%; }
+  .producto-card h3 { font-size: 1rem; }
+  .modal-content { padding: 1rem; width: 94vw; }
+  .modal-content img { width: 88vw; height: auto; max-height: 50vh; }
 }

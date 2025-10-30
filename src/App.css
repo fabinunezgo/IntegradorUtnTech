@@ -25,24 +25,29 @@ body, html, #root {
   flex: 1;
   width: 100%;
   background-color: #f4f4f4;
+  align-items: flex-start;
 }
 
 /* ===== Main ===== */
 main {
   flex: 1;
-  padding: 20px;
+  padding: 28px;
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
   justify-content: flex-start;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 /* Tarjetas de productos y sucursales */
+/* Prefer grid for responsive card layout */
 .cards-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2rem;
-  justify-content: flex-start;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.75rem;
+  width: 100%;
+  align-items: start;
 }
 
 /* ===== Footer ===== */
@@ -50,21 +55,43 @@ footer {
   background-color: #0C223F;
   color: white;
   text-align: center;
-  padding: 15px 0;
+  padding: 15px 12px;
   margin-top: auto;
   font-size: 14px;
 }
 
+/* ===== Helpers for header/search alignment (if present) ===== */
+.top-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+  padding: 8px 20px;
+}
+.buscador, .buscador-menu {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
 /* ===== Responsive ===== */
+@media (max-width: 1024px) {
+  main { padding: 20px; }
+  .cards-grid { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.4rem; }
+}
+
 @media (max-width: 768px) {
   .contenido-principal {
     flex-direction: column;
+    align-items: stretch;
   }
 
   .top-header {
     flex-direction: column;
     align-items: flex-start;
     gap: 10px;
+    padding: 12px 16px;
   }
 
   .buscador-login {
@@ -77,32 +104,49 @@ footer {
 
   main {
     justify-content: center;
-    flex-wrap: wrap;
     gap: 1rem;
+    padding: 18px;
   }
 
   .cards-grid {
-    justify-content: center;
     gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    padding: 0;
   }
 
   .producto-card, .sucursal-card {
-    width: 90vw;
-    max-width: 340px;
+    width: 100%;
+    max-width: 420px;
     margin: 0 auto;
   }
 
   .login-card {
-    width: 90%;
-    padding: 30px 20px;
+    width: 94%;
+    padding: 30px 18px;
   }
 
-  .dashboard-cards {
-    justify-content: center;
-  }
+  .dashboard-cards { justify-content: center; }
+  .dashboard-card { width: 94%; max-width: 360px; }
+}
 
-  .dashboard-card {
-    width: 90%;
-    max-width: 300px;
+@media (max-width: 480px) {
+  main { padding: 14px; gap: 12px; }
+  .cards-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
   }
+  .producto-card, .sucursal-card {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+  }
+  .top-header { padding: 10px 12px; }
+  footer { font-size: 13px; padding: 12px 10px; }
+}
+
+/* Small adjustments for very narrow screens */
+@media (max-width: 360px) {
+  .cards-grid { gap: 10px; }
+  main { padding: 10px; }
+  .login-card { padding: 18px 12px; }
 }
