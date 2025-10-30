@@ -12,10 +12,11 @@ body {
   width: 100%;
 }
 
-.cards-grid {
+.cards-grid,.cards-grid-filas {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+  width: 100%;
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 16px;
@@ -61,4 +62,265 @@ body {
   z-index: 150;
   box-shadow: 0 -2px 8px rgba(0,0,0,0.08);
   margin-top: 0;
+}
+
+
+@media (max-width: 1200px) {
+  .cards-grid {
+    max-width: 1000px;
+    gap: 1.8rem;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    padding: 0 14px;
+  }
+  .main-content { padding-top: 32px; padding-bottom: 72px; }
+}
+
+@media (max-width: 900px) {
+  .cards-grid {
+    gap: 1.4rem;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    padding: 0 12px;
+  }
+
+  .paginador {
+    gap: 8px;
+    margin: 20px 0 0 0;
+  }
+  
+  .paginador {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .paginador button {
+    padding: 9px 14px;
+    font-size: 0.95rem;
+  }
+  .paginador span {
+    width: 100%;
+    text-align: center;
+    margin-top: 6px;
+    font-size: 0.95rem;
+  }
+
+  .footer { padding: 14px 8px; font-size: 0.95rem; }
+}
+
+@media (max-width: 600px) {
+  .cards-grid {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 12px;
+    padding: 0 10px;
+  }
+
+  .main-content { padding-top: 20px; padding-bottom: 64px; }
+
+  .paginador {
+    flex-direction: column;
+    gap: 8px;
+    align-items: stretch;
+  }
+  .paginador button {
+    width: 100%;
+    display: block;
+    border-radius: 10px;
+  }
+  .paginador span { order: -1; margin-bottom: 6px; }
+
+  .footer {
+    padding: 12px 10px;
+    font-size: 0.92rem;
+  }
+}
+
+@media (max-width: 420px) {
+  .cards-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    padding: 0 8px;
+  }
+
+  .main-content {
+    padding-top: 14px;
+    padding-bottom: 56px;
+  }
+
+  .paginador {
+    margin: 18px 0 0 0;
+  }
+  .paginador button { padding: 10px; font-size: 0.95rem; }
+  .paginador span { font-size: 0.92rem; }
+
+  .footer {
+    font-size: 0.9rem;
+    padding: 10px 8px;
+  }
+}
+
+
+@media (max-width: 380px) {
+  .cards-grid { padding: 0 6px; gap: 8px; }
+  .paginador button { padding: 9px; font-size: 0.9rem; }
+}
+body {
+  background: #f7f7f7;
+  margin: 0;
+  padding: 0;
+}
+
+.main-content {
+  background: #f7f7f7;
+  min-height: calc(100vh - 70px);
+  padding-bottom: 80px; 
+  padding-top: 36px;
+  width: 100%;
+}
+
+.cards-grid,.cards-grid-filas {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* ajusta 220px según el ancho de tus tarjetas */
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+.paginador {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 32px 0 0 0;
+  gap: 10px;
+}
+
+.paginador button {
+  background: #e2b100;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1rem;
+  transition: background 0.2s;
+}
+.paginador button:disabled {
+  background: #ccc;
+  color: #444;
+  cursor: not-allowed;
+}
+.paginador span {
+  font-weight: bold;
+}
+
+
+.footer {
+  width: 100%;
+  background: #0c2a43;
+  color: white;
+  text-align: center;
+  padding: 16px 0 10px 0;
+  position: relative;
+  font-size: 1rem;
+  z-index: 150;
+  box-shadow: 0 -2px 8px rgba(0,0,0,0.08);
+  margin-top: 0;
+}
+
+
+@media (max-width: 1200px) {
+  .cards-grid {
+    max-width: 1000px;
+    gap: 1.8rem;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    padding: 0 14px;
+  }
+  .main-content { padding-top: 32px; padding-bottom: 72px; }
+}
+
+@media (max-width: 900px) {
+  .cards-grid {
+    gap: 1.4rem;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    padding: 0 12px;
+  }
+
+  .paginador {
+    gap: 8px;
+    margin: 20px 0 0 0;
+  }
+  
+  .paginador {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .paginador button {
+    padding: 9px 14px;
+    font-size: 0.95rem;
+  }
+  .paginador span {
+    width: 100%;
+    text-align: center;
+    margin-top: 6px;
+    font-size: 0.95rem;
+  }
+
+  .footer { padding: 14px 8px; font-size: 0.95rem; }
+}
+
+@media (max-width: 600px) {
+  .cards-grid {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 12px;
+    padding: 0 10px;
+  }
+
+  .main-content { padding-top: 20px; padding-bottom: 64px; }
+
+  .paginador {
+    flex-direction: column;
+    gap: 8px;
+    align-items: stretch;
+  }
+  .paginador button {
+    width: 100%;
+    display: block;
+    border-radius: 10px;
+  }
+  .paginador span { order: -1; margin-bottom: 6px; }
+
+  .footer {
+    padding: 12px 10px;
+    font-size: 0.92rem;
+  }
+}
+
+@media (max-width: 420px) {
+  .cards-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    padding: 0 8px;
+  }
+
+  .main-content {
+    padding-top: 14px;
+    padding-bottom: 56px;
+  }
+
+  .paginador {
+    margin: 18px 0 0 0;
+  }
+  .paginador button { padding: 10px; font-size: 0.95rem; }
+  .paginador span { font-size: 0.92rem; }
+
+  .footer {
+    font-size: 0.9rem;
+    padding: 10px 8px;
+  }
+}
+
+
+@media (max-width: 380px) {
+  .cards-grid { padding: 0 6px; gap: 8px; }
+  .paginador button { padding: 9px; font-size: 0.9rem; }
 }

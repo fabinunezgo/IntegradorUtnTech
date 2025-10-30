@@ -1,12 +1,17 @@
 import React, { useState } from "react";
 import { FaEdit, FaTrash, FaShoppingCart, FaTimes } from "react-icons/fa";
+import SimpleModal from "./modalemensaje";
 import "../css/cards.css";
 import { addToCart } from "../js/addtocart";
 
-
 export default function TarjetaProducto({ producto, onEditar, onEliminar, modoInventario }) {
   const [modal, setModal] = useState(false);
- 
+  const [simpleModalVisible, setSimpleModalVisible] = useState(false);
+
+  const handleComprarClick = (e) => {
+    e.stopPropagation();
+    setSimpleModalVisible(true);
+  };
 
   return (
     <>
@@ -35,12 +40,25 @@ export default function TarjetaProducto({ producto, onEditar, onEliminar, modoIn
             </button>
           </div>
         ) : (
-          <button className="btn-comprar" onClick={e => addToCart(producto)}>
+          <button className="btn-comprar" onClick={handleComprarClick}>
             <FaShoppingCart className="icono-carrito" /> Comprar
           </button>
         )}
       </div>
 
+      <SimpleModal
+        show={simpleModalVisible}
+        title="Compra"
+        message={`¿Desea agregar "${producto.nombre}" al carrito de compras?`}
+        onClose={() => setSimpleModalVisible(false)}
+        primary={{
+          label: "Confirmar",
+          onClick: () => {
+            addToCart(producto);
+            setSimpleModalVisible(false);
+          }
+        }}
+      />
 
       {modal && (
         <div className="modal-overlay" onClick={() => setModal(false)}>
@@ -69,14 +87,6 @@ export default function TarjetaProducto({ producto, onEditar, onEliminar, modoIn
                 <b>Descripción:</b> <span>{producto.descripcion}</span>
               </p>
             </div>
-            {!modoInventario && (
-              <button
-                className="btn-comprar modal-btn-comprar"
-                onClick={() => alert("Comprar producto")}
-              >
-                <FaShoppingCart className="icono-carrito" /> Comprar
-              </button>
-            )}
             {modoInventario && (
               <div className="botones-accion">
                 <button className="btn-editar"
