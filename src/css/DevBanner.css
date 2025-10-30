@@ -1,0 +1,32 @@
+.dev-banner {
+  position: fixed;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 99999;
+  pointer-events: auto;
+}
+.dev-banner-inner {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: linear-gradient(90deg,#fff9e6,#fff1cc);
+  color: #0a2a3a;
+  border: 1px solid #f0c04a;
+  padding: 10px 14px;
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(8,20,35,0.12);
+  min-width: 280px;
+  max-width: 90vw;
+  font-weight: 600;
+}
+.dev-banner-icon { font-size: 1.1rem; }
+.dev-banner-text { font-size: 0.95rem; }
+.dev-banner-close {
+  margin-left: 8px;
+  background: transparent;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: #16324b;
+}
